@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cotizador RT Construcción</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+  * { 
+    box-sizing: border-box; 
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  body { 
+    margin: 0; 
+    padding: 10px; 
+    background-color: transparent; 
+    display: flex;
+    justify-content: center;
+  }
+
+  .calculator-card {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    width: 100%;
+    max-width: 450px;
+    padding: 35px 25px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .calculator-card:hover {
+    box-shadow: 0 15px 35px rgba(0,85,150,0.12); 
+  }
+
+  /* Borde superior decorativo */
+  .calculator-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: #005596;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .header h3 {
+    color: #005596;
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+  }
+
+  .header p {
+    color: #666;
+    font-size: 13px;
+    margin: 8px 0 0 0;
+    line-height: 1.4;
+  }
+
+  .input-group {
+    margin-bottom: 20px;
+  }
+
+  .input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .currency-symbol {
+    position: absolute;
+    left: 15px;
+    color: #555;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .input-wrapper input {
+    width: 100%;
+    padding: 14px 15px 14px 35px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .input-wrapper input:focus {
+    border-color: #005596;
+    box-shadow: 0 0 0 3px rgba(0,85,150,0.1); 
+  }
+
+  /* Área de Resultados SIEMPRE VISIBLE */
+  .result-area {
+    margin-top: 20px;
+    background-color: #f4f8fb;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #d4e5f2;
+    transition: background-color 0.3s;
+  }
+
+  .result-label {
+    font-size: 12px;
+    color: #555;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .result-value {
+    font-size: 34px; 
+    font-weight: 800;
+    color: #999; /* Gris por defecto, cambia a azul con JS */
+    margin: 5px 0;
+    transition: color 0.3s;
+  }
+
+  .result-breakdown {
+    font-size: 11px;
+    color: #777;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #ccc;
+    line-height: 1.5;
+  }
+
+  /* Botón Principal para el Formulario */
+  .btn-formal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 25px;
+    transition: background-color 0.2s, transform 0.1s;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+    cursor: pointer;
+  }
+
+  .btn-formal:hover {
+    background-color: #3e8e41;
+  }
+
+  .btn-formal:active {
+    transform: scale(0.98);
+  }
+
+  .disclaimer {
+    font-size: 10px;
+    color: #999;
+    text-align: center;
+    margin-top: 15px;
+    line-height: 1.4;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="calculator-card">
+  <div class="header">
+    <h3>Cotizador Rápido</h3>
+    <p>Calcula el costo estimado de tu póliza RT Construcción al instante.</p>
+  </div>
+
+  <div class="input-group">
+    <label for="valorObra">Valor Total de la Obra</label>
+    <div class="input-wrapper">
+      <span class="currency-symbol">₡</span>
+      <input type="text" id="valorObra" placeholder="Ej. 25,000,000" autocomplete="off">
+    </div>
+  </div>
+
+  <div class="result-area" id="resultArea">
+    <div class="result-label">Costo Estimado de la Póliza</div>
+    <!-- Inicia en 0 y en gris, se actualiza automáticamente -->
+    <div class="result-value" id="costoFinal">₡0.00</div>
+    <div class="result-breakdown">
+      Tarifa aplicada: <strong>3.98%</strong>
+    </div>
+  </div>
+
+  <!-- Enlace actualizado al formulario de Google como Botón Principal -->
+  <a href="https://forms.gle/N4TsmLgNfWXbyVTo6" target="_blank" class="btn-formal">
+    Solicitar Cotización Formal
+  </a>
+
+  <div class="disclaimer">
+    *Este cálculo es una estimación referencial. El costo final será determinado por el Instituto Nacional de Seguros (INS) al emitir la póliza oficial.
+  </div>
+</div>
+
+<script>
+  const inputValor = document.getElementById('valorObra');
+  const costoFinal = document.getElementById('costoFinal');
+
+  // Evento que se dispara cada vez que el usuario escribe un número
+  inputValor.addEventListener('input', function(e) {
+    // 1. Limpiar y dejar solo números
+    let rawValue = e.target.value.replace(/\D/g, '');
+    let formattedValue = '';
+    
+    // 2. Dar formato con comas al input
+    if (rawValue !== "") {
+      formattedValue = parseInt(rawValue, 10).toLocaleString('es-CR');
+    }
+    e.target.value = formattedValue;
+
+    // 3. Calcular en tiempo real la prima
+    if (rawValue && parseInt(rawValue, 10) > 0) {
+      let valorObra = parseFloat(rawValue);
+      let manoObraAsegurable = valorObra * 0.35; 
+      let costoPoliza = manoObraAsegurable * 0.0398; 
+
+      // Mostrar precio y ponerlo en color azul destacado
+      costoFinal.innerText = '₡' + costoPoliza.toLocaleString('es-CR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      costoFinal.style.color = '#005596'; 
+    } else {
+      // Si borran el número, vuelve a 0 y a gris
+      costoFinal.innerText = '₡0.00';
+      costoFinal.style.color = '#999';
+    }
+  });
+</script>
+
+</body>
+</html>
