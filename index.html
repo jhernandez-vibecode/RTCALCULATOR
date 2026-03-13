@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cotizador RT Construcción</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
 
   * { 
     box-sizing: border-box; 
@@ -68,7 +68,7 @@
   }
 
   .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
   }
 
   .input-group label {
@@ -111,13 +111,11 @@
     box-shadow: 0 0 0 3px rgba(0,85,150,0.1); 
   }
 
-  /* Área de Resultados SIEMPRE VISIBLE */
+  /* Área de Resultados - Estilo Recibo */
   .result-area {
-    margin-top: 20px;
     background-color: #f4f8fb;
     border-radius: 8px;
     padding: 20px;
-    text-align: center;
     border: 1px solid #d4e5f2;
     transition: background-color 0.3s;
   }
@@ -125,63 +123,55 @@
   .result-label {
     font-size: 12px;
     color: #555;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    text-align: center;
   }
 
   .result-value {
     font-size: 34px; 
     font-weight: 800;
     color: #999; /* Gris por defecto, cambia a azul con JS */
-    margin: 5px 0;
+    margin: 10px 0 15px 0;
+    text-align: center;
     transition: color 0.3s;
   }
 
   .result-breakdown {
-    font-size: 11px;
-    color: #777;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px dashed #ccc;
-    line-height: 1.5;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #b5cadd;
   }
 
-  /* Botón Principal para el Formulario */
-  .btn-formal {
+  .breakdown-row {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 16px;
-    border-radius: 8px;
-    font-size: 14px;
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 8px;
+  }
+
+  .breakdown-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .breakdown-row span {
+    font-weight: 500;
+  }
+
+  .breakdown-row strong {
+    color: #333;
     font-weight: 700;
-    text-transform: uppercase;
-    text-align: center;
-    text-decoration: none;
-    margin-top: 25px;
-    transition: background-color 0.2s, transform 0.1s;
-    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
-    cursor: pointer;
-  }
-
-  .btn-formal:hover {
-    background-color: #3e8e41;
-  }
-
-  .btn-formal:active {
-    transform: scale(0.98);
+    font-size: 13px;
   }
 
   .disclaimer {
     font-size: 10px;
     color: #999;
     text-align: center;
-    margin-top: 15px;
+    margin-top: 20px;
     line-height: 1.4;
   }
 
@@ -205,17 +195,19 @@
 
   <div class="result-area" id="resultArea">
     <div class="result-label">Costo Estimado de la Póliza</div>
-    <!-- Inicia en 0 y en gris, se actualiza automáticamente -->
     <div class="result-value" id="costoFinal">₡0.00</div>
+    
     <div class="result-breakdown">
-      Tarifa aplicada: <strong>3.98%</strong>
+      <div class="breakdown-row">
+        <span>Mano de Obra (35% del total):</span>
+        <strong id="manoObraVal">₡0.00</strong>
+      </div>
+      <div class="breakdown-row">
+        <span>Tarifa Aplicada:</span>
+        <strong>3.98%</strong>
+      </div>
     </div>
   </div>
-
-  <!-- Enlace actualizado al formulario de Google como Botón Principal -->
-  <a href="https://forms.gle/N4TsmLgNfWXbyVTo6" target="_blank" class="btn-formal">
-    Solicitar Cotización Formal
-  </a>
 
   <div class="disclaimer">
     *Este cálculo es una estimación referencial. El costo final será determinado por el Instituto Nacional de Seguros (INS) al emitir la póliza oficial.
@@ -225,32 +217,36 @@
 <script>
   const inputValor = document.getElementById('valorObra');
   const costoFinal = document.getElementById('costoFinal');
+  const manoObraVal = document.getElementById('manoObraVal');
 
-  // Evento que se dispara cada vez que el usuario escribe un número
   inputValor.addEventListener('input', function(e) {
-    // 1. Limpiar y dejar solo números
     let rawValue = e.target.value.replace(/\D/g, '');
     let formattedValue = '';
     
-    // 2. Dar formato con comas al input
     if (rawValue !== "") {
       formattedValue = parseInt(rawValue, 10).toLocaleString('es-CR');
     }
     e.target.value = formattedValue;
 
-    // 3. Calcular en tiempo real la prima
     if (rawValue && parseInt(rawValue, 10) > 0) {
       let valorObra = parseFloat(rawValue);
       let manoObraAsegurable = valorObra * 0.35; 
       let costoPoliza = manoObraAsegurable * 0.0398; 
 
-      // Mostrar precio y ponerlo en color azul destacado
+      // Actualizar el costo total
       costoFinal.innerText = '₡' + costoPoliza.toLocaleString('es-CR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
       costoFinal.style.color = '#005596'; 
+
+      // Actualizar el desglose del 35%
+      manoObraVal.innerText = '₡' + manoObraAsegurable.toLocaleString('es-CR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      manoObraVal.style.color = '#005596';
+
     } else {
-      // Si borran el número, vuelve a 0 y a gris
+      // Regresar a valores en cero si borran todo
       costoFinal.innerText = '₡0.00';
       costoFinal.style.color = '#999';
+      manoObraVal.innerText = '₡0.00';
+      manoObraVal.style.color = '#333';
     }
   });
 </script>
