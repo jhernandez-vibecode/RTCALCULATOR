@@ -17,3 +17,19 @@ const SHEET_NAME = 'Cotizaciones RT';
 // Fórmula RT Construcción
 const TASA_MONTO_ASEGURADO = 0.35;   // 35% del valor de la obra
 const TASA_PRIMA           = 0.0398; // 3.98% del monto asegurado
+
+// ─── Logging en Sheets ────────────────────────────────────────────────────────
+function _registrarCotizacion(datos) {
+  const ss    = SpreadsheetApp.openById(SHEET_ID);
+  const hoja  = ss.getSheetByName(SHEET_NAME);
+  hoja.appendRow([
+    new Date(),
+    datos.nombre,
+    datos.telefono,
+    datos.correo,
+    datos.montoObra,
+    datos.montoAsegurado,
+    datos.prima,
+    'Enviada'
+  ]);
+}
