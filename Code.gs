@@ -293,3 +293,52 @@ function _enviarEmailCliente(d) {
     htmlBody: html
   });
 }
+
+// ─── Notificación al agente ───────────────────────────────────────────────────
+function _enviarNotificacionAgente(d) {
+  const waCliente = 'https://wa.me/506' + d.telefono.replace(/[^0-9]/g, '');
+  const mensaje   = encodeURIComponent(
+    'Hola ' + d.nombre + ', le escribo de parte de Juan Carlos Hernández (Seguros INS) ' +
+    'con respecto a su cotización del Seguro RT Construcción. ¿Tiene alguna consulta?'
+  );
+
+  const html = `<div style="font-family:Arial,sans-serif;max-width:500px;padding:24px;border:2px solid #003DA5;border-radius:10px">
+    <h2 style="margin:0 0 16px 0;color:#0B1F3D;font-size:18px">
+      🏗️ Nueva cotización RT Construcción
+    </h2>
+    <table width="100%" cellpadding="6" cellspacing="0" style="border-collapse:collapse;margin-bottom:16px">
+      <tr style="background:#F0F7FF">
+        <td style="font-size:13px;color:#6B7280;width:40%;padding:8px 12px;border-bottom:1px solid #E5E7EB">Nombre</td>
+        <td style="font-size:13px;color:#0B1F3D;font-weight:700;padding:8px 12px;border-bottom:1px solid #E5E7EB">${_escapeHtml(d.nombre)}</td>
+      </tr>
+      <tr>
+        <td style="font-size:13px;color:#6B7280;padding:8px 12px;border-bottom:1px solid #E5E7EB">Teléfono</td>
+        <td style="font-size:13px;color:#0B1F3D;font-weight:700;padding:8px 12px;border-bottom:1px solid #E5E7EB">${_escapeHtml(d.telefono)}</td>
+      </tr>
+      <tr style="background:#F0F7FF">
+        <td style="font-size:13px;color:#6B7280;padding:8px 12px;border-bottom:1px solid #E5E7EB">Correo</td>
+        <td style="font-size:13px;color:#003DA5;padding:8px 12px;border-bottom:1px solid #E5E7EB">
+          <a href="mailto:${_escapeHtml(d.correo)}" style="color:#003DA5">${_escapeHtml(d.correo)}</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-size:13px;color:#6B7280;padding:8px 12px;border-bottom:1px solid #E5E7EB">Valor de obra</td>
+        <td style="font-size:13px;color:#0B1F3D;font-weight:700;padding:8px 12px;border-bottom:1px solid #E5E7EB">${_formatCRC(d.montoObra)}</td>
+      </tr>
+      <tr style="background:#F0FFF4">
+        <td style="font-size:13px;color:#6B7280;padding:8px 12px">Prima calculada</td>
+        <td style="font-size:15px;color:#00A859;font-weight:800;padding:8px 12px">${_formatCRC(d.prima)}</td>
+      </tr>
+    </table>
+    <a href="${waCliente}?text=${mensaje}"
+       style="display:inline-block;background:#25D366;color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:12px 28px;border-radius:8px">
+      📱 WhatsApp → ${_escapeHtml(d.nombre)}
+    </a>
+  </div>`;
+
+  MailApp.sendEmail({
+    to:       AGENTE.correo,
+    subject:  '🏗️ RT Construcción — ' + d.nombre + ' · Tel: ' + d.telefono,
+    htmlBody: html
+  });
+}
