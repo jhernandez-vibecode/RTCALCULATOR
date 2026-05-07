@@ -118,7 +118,7 @@ function doPost(e) {
 
   } catch (err) {
     console.error('doPost error:', err);
-    return _jsonResp({ status: 'error', msg: String(err) });
+    return _jsonResp({ status: 'error', msg: 'Error interno. Intentá de nuevo.' });
   }
 }
 
@@ -208,7 +208,8 @@ function _enviarEmailCliente(d) {
           <td style="width:28px;height:28px;background:#003DA5;border-radius:50%;text-align:center;vertical-align:middle;font-size:12px;font-weight:700;color:#fff">1</td>
           <td style="padding-left:12px;font-size:13px;color:#374151;vertical-align:middle;line-height:1.5">
             <strong>Complete y firme la solicitud adjunta</strong><br>
-            <span style="color:#6B7280">Podés hacerlo de forma digital o manual</span>
+            <span style="color:#6B7280">Podés hacerlo de forma digital o manual · </span>
+            <a href="https://drive.google.com/file/d/1BrPfWiw6w03OFKN3KdEu-FYIiuxWKL0e/view?usp=drive_link" style="color:#003DA5;font-weight:600">Descargar solicitud</a>
           </td>
         </tr></table>
       </td></tr>
@@ -223,7 +224,7 @@ function _enviarEmailCliente(d) {
       </td></tr>
       <tr><td style="padding:0 0 14px 0;vertical-align:top">
         <table cellpadding="0" cellspacing="0"><tr>
-          <td style="width:28px;height:28px;background:#6B7280;border-radius:50%;text-align:center;vertical-align:middle;font-size:12px;font-weight:700;color:#fff">3</td>
+          <td style="width:28px;height:28px;background:#003DA5;border-radius:50%;text-align:center;vertical-align:middle;font-size:12px;font-weight:700;color:#fff">3</td>
           <td style="padding-left:12px;font-size:13px;color:#374151;vertical-align:middle;line-height:1.5">
             <strong>Si es sociedad:</strong> copia de la personería jurídica
           </td>
@@ -234,7 +235,8 @@ function _enviarEmailCliente(d) {
           <td style="width:28px;height:28px;background:#003DA5;border-radius:50%;text-align:center;vertical-align:middle;font-size:12px;font-weight:700;color:#fff">4</td>
           <td style="padding-left:12px;font-size:13px;color:#374151;vertical-align:middle;line-height:1.5">
             <strong>Formas de pago</strong><br>
-            <span style="color:#6B7280">Depósito en las cuentas del INS · Link de pago con tarjeta</span>
+            <a href="https://drive.google.com/file/d/1_B3NLiFkhHeqb8auhjtNpHLgxwFO68cI/view?usp=drive_link" style="color:#003DA5;font-weight:600">Ver cuentas del INS</a>
+            <span style="color:#6B7280"> · Link de pago con tarjeta</span>
           </td>
         </tr></table>
       </td></tr>
