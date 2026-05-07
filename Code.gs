@@ -264,20 +264,25 @@ function _enviarEmailCliente(d) {
 
   <!-- FOOTER SDI -->
   <tr><td style="background:#0B1F3D;padding:20px 32px;border-radius:0 0 10px 10px;text-align:center">
-    <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto 12px">
+    <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto 10px">
       <tr>
         <td style="vertical-align:middle;padding-right:10px">
-          <div style="background:#fff;height:3px;width:30px;margin-bottom:3px;border-radius:2px"></div>
-          <div style="background:#fff;height:3px;width:22px;margin-bottom:3px;border-radius:2px"></div>
-          <div style="background:#fff;height:3px;width:30px;margin-bottom:3px;border-radius:2px"></div>
-          <div style="background:#fff;height:3px;width:16px;border-radius:2px"></div>
+          <p style="margin:0;color:#ffffff;font-size:36px;font-weight:700;letter-spacing:-1px;line-height:1">SDI</p>
         </td>
-        <td style="vertical-align:middle">
-          <p style="margin:0;color:#ffffff;font-size:16px;font-weight:800;letter-spacing:1px">SDI</p>
-          <p style="margin:0;color:rgba(255,255,255,.5);font-size:8px;letter-spacing:2px">SEGUROS DIGITALES</p>
+        <td style="vertical-align:middle;padding-left:4px">
+          <table cellpadding="0" cellspacing="0">
+            <tr><td style="background:#ffffff;width:30px;height:6px;border-radius:2px;font-size:0;line-height:0">&nbsp;</td></tr>
+            <tr><td style="height:4px;font-size:0;line-height:0">&nbsp;</td></tr>
+            <tr><td style="background:#ffffff;width:30px;height:6px;border-radius:2px;font-size:0;line-height:0">&nbsp;</td></tr>
+            <tr><td style="height:4px;font-size:0;line-height:0">&nbsp;</td></tr>
+            <tr><td style="background:#ffffff;width:30px;height:6px;border-radius:2px;font-size:0;line-height:0">&nbsp;</td></tr>
+            <tr><td style="height:4px;font-size:0;line-height:0">&nbsp;</td></tr>
+            <tr><td style="background:#ffffff;width:30px;height:6px;border-radius:2px;font-size:0;line-height:0">&nbsp;</td></tr>
+          </table>
         </td>
       </tr>
     </table>
+    <p style="margin:0 0 8px 0;color:rgba(255,255,255,.6);font-size:10px;font-weight:500;letter-spacing:3px">SEGUROS DIGITALES</p>
     <p style="margin:0;color:rgba(255,255,255,.4);font-size:10px;line-height:1.7">
       © Propiedad intelectual de Juan Carlos Hernández Vargas<br>
       Seguros Digitales SDI — Todos los derechos reservados
