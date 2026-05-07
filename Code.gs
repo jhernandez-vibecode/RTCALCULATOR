@@ -1,7 +1,7 @@
 // ─── Constantes del agente ────────────────────────────────────────────────────
 const AGENTE = {
   nombre:   'Juan Carlos Hernández Vargas',
-  licencia: '08-1318',           // verificar si es 08-1318 o 08-1310
+  licencia: '08-1318',
   correo:   'jhernandez@segurosdelins.com',
   telefono: '8822-1348',
   waLink:   'https://wa.link/tbqrrn',
@@ -11,7 +11,7 @@ const AGENTE = {
 
 // ID del Google Sheet donde se guardan las cotizaciones
 // REEMPLAZAR con el ID real después de crear la hoja
-const SHEET_ID = 'PENDIENTE_REEMPLAZAR';
+const SHEET_ID = '1wYvzscJLrYjI2Az95xKdKwgNtfNe8rd4qfIJ-0UKGyA';
 const SHEET_NAME = 'Cotizaciones RT';
 
 // Fórmula RT Construcción
