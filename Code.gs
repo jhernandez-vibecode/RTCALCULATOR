@@ -170,13 +170,13 @@ function _enviarEmailCliente(d) {
       </tr>
       <tr>
         <td style="padding:16px 20px;background:#00A859">
-          <p style="margin:0;font-size:12px;color:rgba(255,255,255,.8);text-transform:uppercase;letter-spacing:.5px">Prima anual</p>
+          <p style="margin:0;font-size:12px;color:rgba(255,255,255,.8);text-transform:uppercase;letter-spacing:.5px">Monto a cancelar</p>
           <p style="margin:4px 0 0 0;font-size:26px;font-weight:800;color:#ffffff">${primaFmt}</p>
         </td>
       </tr>
     </table>
     <p style="margin:12px 0 0 0;font-size:11px;color:#9CA3AF;text-align:center">
-      ⏱ Cotización válida por 15 días · Valores pueden variar según condiciones municipales
+      ⏱ Cotización válida por 15 días · Vigencia máxima 11 meses y medio · Valores pueden variar según condiciones municipales
     </p>
   </td></tr>
 
@@ -205,7 +205,7 @@ function _enviarEmailCliente(d) {
     <table width="100%" cellpadding="0" cellspacing="0">
       <tr><td style="padding:0 0 14px 0;vertical-align:top">
         <table cellpadding="0" cellspacing="0"><tr>
-          <td style="width:28px;height:28px;background:#003DA5;border-radius:50%;text-align:center;vertical-align:middle;font-size:12px;font-weight:700;color:#fff">1</td>
+          <td width="28" height="28" style="width:28px;height:28px;min-width:28px;background:#003DA5;border-radius:14px;-webkit-border-radius:14px;text-align:center;vertical-align:middle;font-size:12px;font-weight:700;color:#fff;line-height:28px">1</td>
           <td style="padding-left:12px;font-size:13px;color:#374151;vertical-align:middle;line-height:1.5">
             <strong>Complete y firme la solicitud adjunta</strong><br>
             <span style="color:#6B7280">Podés hacerlo de forma digital o manual · </span>
@@ -215,7 +215,7 @@ function _enviarEmailCliente(d) {
       </td></tr>
       <tr><td style="padding:0 0 14px 0;vertical-align:top">
         <table cellpadding="0" cellspacing="0"><tr>
-          <td style="width:28px;height:28px;background:#003DA5;border-radius:50%;text-align:center;vertical-align:middle;font-size:12px;font-weight:700;color:#fff">2</td>
+          <td width="28" height="28" style="width:28px;height:28px;min-width:28px;background:#003DA5;border-radius:14px;-webkit-border-radius:14px;text-align:center;vertical-align:middle;font-size:12px;font-weight:700;color:#fff;line-height:28px">2</td>
           <td style="padding-left:12px;font-size:13px;color:#374151;vertical-align:middle;line-height:1.5">
             <strong>Envíenos la boleta de la Municipalidad o del CFIA</strong><br>
             <span style="color:#6B7280">Datos de la obra y solicitud del seguro</span>
@@ -224,7 +224,7 @@ function _enviarEmailCliente(d) {
       </td></tr>
       <tr><td style="padding:0 0 14px 0;vertical-align:top">
         <table cellpadding="0" cellspacing="0"><tr>
-          <td style="width:28px;height:28px;background:#003DA5;border-radius:50%;text-align:center;vertical-align:middle;font-size:12px;font-weight:700;color:#fff">3</td>
+          <td width="28" height="28" style="width:28px;height:28px;min-width:28px;background:#003DA5;border-radius:14px;-webkit-border-radius:14px;text-align:center;vertical-align:middle;font-size:12px;font-weight:700;color:#fff;line-height:28px">3</td>
           <td style="padding-left:12px;font-size:13px;color:#374151;vertical-align:middle;line-height:1.5">
             <strong>Si es sociedad:</strong> copia de la personería jurídica
           </td>
@@ -232,7 +232,7 @@ function _enviarEmailCliente(d) {
       </td></tr>
       <tr><td style="padding:0 0 4px 0;vertical-align:top">
         <table cellpadding="0" cellspacing="0"><tr>
-          <td style="width:28px;height:28px;background:#003DA5;border-radius:50%;text-align:center;vertical-align:middle;font-size:12px;font-weight:700;color:#fff">4</td>
+          <td width="28" height="28" style="width:28px;height:28px;min-width:28px;background:#003DA5;border-radius:14px;-webkit-border-radius:14px;text-align:center;vertical-align:middle;font-size:12px;font-weight:700;color:#fff;line-height:28px">4</td>
           <td style="padding-left:12px;font-size:13px;color:#374151;vertical-align:middle;line-height:1.5">
             <strong>Formas de pago</strong><br>
             <a href="https://drive.google.com/file/d/1_B3NLiFkhHeqb8auhjtNpHLgxwFO68cI/view?usp=drive_link" style="color:#003DA5;font-weight:600">Ver cuentas del INS</a>
