@@ -1,0 +1,135 @@
+<h2>¿Qué estilo quieres para el cotizador de RT Construcción?</h2>
+<p class="subtitle">El formulario se incrusta en Google Sites via iframe. Elige el look general.</p>
+
+<div class="cards">
+
+  <!-- OPCIÓN A -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#0B1F3D;padding:10px 14px;border-radius:8px 8px 0 0;display:flex;align-items:center;gap:8px">
+        <div style="width:32px;height:32px;background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center">
+          <div style="width:18px;height:18px;background:#003DA5;border-radius:3px"></div>
+        </div>
+        <div>
+          <div style="color:#fff;font-size:11px;font-weight:700;line-height:1.2">Seguro RT Construcción</div>
+          <div style="color:#00A859;font-size:9px;font-weight:600">INS · Cotización inmediata</div>
+        </div>
+      </div>
+      <!-- stepper -->
+      <div style="background:#13284d;padding:6px 14px;display:flex;gap:6px;align-items:center">
+        <div style="width:22px;height:22px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#0B1F3D">1</div>
+        <div style="height:2px;flex:1;background:rgba(255,255,255,.2)"></div>
+        <div style="width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:rgba(255,255,255,.6)">2</div>
+        <div style="height:2px;flex:1;background:rgba(255,255,255,.2)"></div>
+        <div style="width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:rgba(255,255,255,.6)">3</div>
+      </div>
+      <!-- form body -->
+      <div style="background:#fff;padding:14px;display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:10px;font-weight:700;color:#374151;text-transform:uppercase;letter-spacing:.5px">Paso 1 · Tus datos</div>
+        <div style="height:28px;background:#F3F4F6;border-radius:6px;border:1px solid #E5E7EB"></div>
+        <div style="height:28px;background:#F3F4F6;border-radius:6px;border:1px solid #E5E7EB"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+          <div style="height:28px;background:#F3F4F6;border-radius:6px;border:1px solid #E5E7EB"></div>
+          <div style="height:28px;background:#F3F4F6;border-radius:6px;border:1px solid #E5E7EB"></div>
+        </div>
+        <div style="background:#003DA5;color:#fff;text-align:center;border-radius:8px;padding:8px;font-size:10px;font-weight:700;margin-top:4px">Siguiente →</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Wizard por pasos (como el de viaje)</h3>
+      <p>Dark header INS + stepper + formulario en 3 pasos separados. Consistente con el cotizador de viaje que ya tenés.</p>
+    </div>
+  </div>
+
+  <!-- OPCIÓN B -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:linear-gradient(135deg,#003DA5,#1E6EE8);padding:16px;border-radius:8px 8px 0 0;text-align:center">
+        <div style="font-size:11px;font-weight:800;color:#fff;letter-spacing:.5px">SEGURO RT CONSTRUCCIÓN</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.8);margin-top:2px">Calculá tu prima en segundos</div>
+      </div>
+      <!-- Single scroll form -->
+      <div style="background:#fff;padding:14px;display:flex;flex-direction:column;gap:8px">
+        <!-- Datos -->
+        <div style="background:#F0F7FF;border-radius:8px;padding:10px">
+          <div style="font-size:9px;font-weight:700;color:#003DA5;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">📋 Datos personales</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+            <div style="height:24px;background:#fff;border-radius:5px;border:1px solid #BFDBFE"></div>
+            <div style="height:24px;background:#fff;border-radius:5px;border:1px solid #BFDBFE"></div>
+          </div>
+        </div>
+        <!-- Obra -->
+        <div style="background:#F0FFF4;border-radius:8px;padding:10px">
+          <div style="font-size:9px;font-weight:700;color:#00A859;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">🏗️ Datos de la obra</div>
+          <div style="height:24px;background:#fff;border-radius:5px;border:1px solid #A7F3D0;margin-bottom:5px"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+            <div style="height:24px;background:#fff;border-radius:5px;border:1px solid #A7F3D0"></div>
+            <div style="height:24px;background:#fff;border-radius:5px;border:1px solid #A7F3D0"></div>
+          </div>
+        </div>
+        <!-- Resultado preview -->
+        <div style="background:#FFF8E1;border-radius:8px;padding:10px;border:1px solid #FFD100">
+          <div style="font-size:9px;font-weight:700;color:#7C5800;text-transform:uppercase;letter-spacing:.5px">💰 Prima estimada</div>
+          <div style="font-size:16px;font-weight:800;color:#0B1F3D;margin:4px 0">₡ ___,___</div>
+          <div style="font-size:8px;color:#6B7280">Monto asegurado: ₡ ___,___</div>
+        </div>
+        <div style="background:#00A859;color:#fff;text-align:center;border-radius:8px;padding:8px;font-size:10px;font-weight:700">Enviar cotización al correo</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Una sola página con cálculo en vivo</h3>
+      <p>Secciones acordeón en scroll. La prima se calcula en tiempo real conforme escribís el valor de la obra. Todo en una pantalla.</p>
+    </div>
+  </div>
+
+  <!-- OPCIÓN C -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#fff;border-radius:8px;border:2px solid #003DA5;overflow:hidden">
+        <!-- Clean top bar -->
+        <div style="background:#003DA5;padding:8px 12px;display:flex;align-items:center;gap:8px">
+          <div style="width:24px;height:24px;background:#FFD100;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#0B1F3D">RT</div>
+          <div style="color:#fff;font-size:10px;font-weight:700">Cotización RT Construcción · INS</div>
+        </div>
+        <!-- Two column layout -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+          <!-- Left: form -->
+          <div style="padding:10px;border-right:1px solid #E5E7EB;display:flex;flex-direction:column;gap:6px">
+            <div style="font-size:8px;font-weight:700;color:#6B7280;text-transform:uppercase">Valor de la obra</div>
+            <div style="height:26px;background:#F3F4F6;border-radius:5px;border:1px solid #003DA5"></div>
+            <div style="font-size:8px;font-weight:700;color:#6B7280;text-transform:uppercase">Nombre</div>
+            <div style="height:22px;background:#F3F4F6;border-radius:5px;border:1px solid #E5E7EB"></div>
+            <div style="font-size:8px;font-weight:700;color:#6B7280;text-transform:uppercase">Correo</div>
+            <div style="height:22px;background:#F3F4F6;border-radius:5px;border:1px solid #E5E7EB"></div>
+            <div style="font-size:8px;font-weight:700;color:#6B7280;text-transform:uppercase">Teléfono</div>
+            <div style="height:22px;background:#F3F4F6;border-radius:5px;border:1px solid #E5E7EB"></div>
+          </div>
+          <!-- Right: result -->
+          <div style="padding:10px;background:#F9FAFB;display:flex;flex-direction:column;gap:6px">
+            <div style="font-size:8px;font-weight:700;color:#6B7280;text-transform:uppercase">Tu cotización</div>
+            <div style="background:#fff;border-radius:6px;padding:8px;border:1px solid #E5E7EB">
+              <div style="font-size:7px;color:#6B7280">Monto asegurado (35%)</div>
+              <div style="font-size:11px;font-weight:700;color:#003DA5">₡ 0</div>
+            </div>
+            <div style="background:#00A859;border-radius:6px;padding:8px">
+              <div style="font-size:7px;color:rgba(255,255,255,.8)">Prima anual (3.98%)</div>
+              <div style="font-size:14px;font-weight:800;color:#fff">₡ 0</div>
+            </div>
+            <div style="background:#FFF8E1;border-radius:6px;padding:6px;border:1px solid #FFD100;margin-top:2px">
+              <div style="font-size:7px;color:#7C5800;font-weight:600">⚡ Cálculo instantáneo</div>
+              <div style="font-size:7px;color:#92400E">Ingresá el valor de la obra para ver tu prima</div>
+            </div>
+            <div style="background:#003DA5;color:#fff;text-align:center;border-radius:6px;padding:7px;font-size:8px;font-weight:700;margin-top:auto">Recibir cotización →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Dos columnas: formulario + resumen en vivo</h3>
+      <p>Desktop: formulario izquierda, resultado derecha en tiempo real. Minimalista y muy directo — el usuario ve la prima mientras escribe.</p>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:16px;font-size:12px">💡 Las tres opciones envían el correo igual — solo difiere el look del formulario en tu página de Google Sites.</p>
