@@ -241,8 +241,9 @@
     <div class="divider">Datos de la obra</div>
 
     <div class="field field-monto">
-      <label for="montoObra">Valor de la obra (₡)</label>
-      <input type="number" id="montoObra" name="montoObra" placeholder="Ej. 50000000" min="1" required>
+      <label for="montoObra">Valor de la obra</label>
+      <input type="text" id="montoObra" name="montoObra" placeholder="₡ 0" inputmode="numeric" autocomplete="off" required>
+      <input type="hidden" id="montoObraRaw">
       <span class="field-hint">Ingresá el costo total de la construcción en colones</span>
     </div>
 
@@ -293,7 +294,7 @@ form.addEventListener('submit', async (e) => {
     nombre:    document.getElementById('nombre').value.trim(),
     telefono:  document.getElementById('telefono').value.trim(),
     correo:    document.getElementById('correo').value.trim(),
-    montoObra: document.getElementById('montoObra').value.trim(),
+    montoObra: document.getElementById('montoObraRaw').value,
     website:   form.querySelector('[name="website"]').value
   });
 
@@ -321,7 +322,7 @@ form.addEventListener('submit', async (e) => {
 
 function validarForm() {
   let ok = true;
-  ['nombre','telefono','correo','montoObra'].forEach(id => {
+  ['nombre','telefono','correo'].forEach(id => {
     const el = document.getElementById(id);
     const val = el.value.trim();
     if (!val || (id === 'correo' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val))) {
@@ -331,10 +332,38 @@ function validarForm() {
       el.classList.remove('error');
     }
   });
+  const montoEl  = document.getElementById('montoObra');
+  const montoRaw = document.getElementById('montoObraRaw').value;
+  if (!montoRaw || parseFloat(montoRaw) <= 0) {
+    montoEl.classList.add('error');
+    ok = false;
+  } else {
+    montoEl.classList.remove('error');
+  }
   return ok;
 }
 
-document.querySelectorAll('input').forEach(el => {
+// Máscara ₡ con separadores de miles
+const montoInput = document.getElementById('montoObra');
+const montoRawEl = document.getElementById('montoObraRaw');
+
+montoInput.addEventListener('input', () => {
+  const digits = montoInput.value.replace(/[^0-9]/g, '');
+  montoRawEl.value = digits;
+  montoInput.value = digits ? '₡ ' + parseInt(digits, 10).toLocaleString('es-CR') : '';
+  montoInput.classList.remove('error');
+});
+
+montoInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Backspace' || e.key === 'Delete') {
+    const digits = montoRawEl.value.slice(0, -1);
+    montoRawEl.value = digits;
+    montoInput.value = digits ? '₡ ' + parseInt(digits, 10).toLocaleString('es-CR') : '';
+    e.preventDefault();
+  }
+});
+
+document.querySelectorAll('input:not(#montoObra)').forEach(el => {
   el.addEventListener('input', () => el.classList.remove('error'));
 });
 </script>
