@@ -33,3 +33,44 @@ function _registrarCotizacion(datos) {
     'Enviada'
   ]);
 }
+
+// ─── Validación ───────────────────────────────────────────────────────────────
+function _validarEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function _checkRateLimit(email) {
+  const cache = CacheService.getScriptCache();
+  const key   = 'rl_' + email.toLowerCase().replace(/[^a-z0-9]/g, '_');
+  if (cache.get(key)) return false; // bloqueado
+  cache.put(key, '1', 30);          // 30 segundos de bloqueo
+  return true;
+}
+
+// ─── Cálculo prima ────────────────────────────────────────────────────────────
+function _calcular(montoObra) {
+  const montoAsegurado = montoObra * TASA_MONTO_ASEGURADO;
+  const prima          = montoAsegurado * TASA_PRIMA;
+  return { montoAsegurado, prima };
+}
+
+// ─── Formateo de moneda ───────────────────────────────────────────────────────
+function _formatCRC(numero) {
+  return '₡ ' + Math.round(numero).toLocaleString('es-CR');
+}
+
+// ─── Escape HTML ──────────────────────────────────────────────────────────────
+function _escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// ─── Respuesta JSON ───────────────────────────────────────────────────────────
+function _jsonResp(obj) {
+  return ContentService
+    .createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}
