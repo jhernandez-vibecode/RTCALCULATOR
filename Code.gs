@@ -74,3 +74,56 @@ function _jsonResp(obj) {
     .createTextOutput(JSON.stringify(obj))
     .setMimeType(ContentService.MimeType.JSON);
 }
+
+// ─── Endpoint principal ───────────────────────────────────────────────────────
+function doPost(e) {
+  try {
+    const p = e.parameter;
+
+    // Honeypot: si el campo website tiene valor, es un bot
+    if (p.website) return _jsonResp({ status: 'ok' });
+
+    // Validar campos requeridos
+    const nombre   = (p.nombre   || '').trim();
+    const telefono = (p.telefono || '').trim();
+    const correo   = (p.correo   || '').trim().toLowerCase();
+    const montoRaw = (p.montoObra || '').replace(/[^0-9.]/g, '');
+
+    if (!nombre || !telefono || !correo || !montoRaw) {
+      return _jsonResp({ status: 'error', msg: 'Campos incompletos' });
+    }
+    if (!_validarEmail(correo)) {
+      return _jsonResp({ status: 'error', msg: 'Correo inválido' });
+    }
+    if (!_checkRateLimit(correo)) {
+      return _jsonResp({ status: 'ok' }); // silencioso para no revelar el bloqueo
+    }
+
+    const montoObra = parseFloat(montoRaw);
+    if (isNaN(montoObra) || montoObra <= 0) {
+      return _jsonResp({ status: 'error', msg: 'Monto inválido' });
+    }
+
+    const { montoAsegurado, prima } = _calcular(montoObra);
+    const datos = { nombre, telefono, correo, montoObra, montoAsegurado, prima };
+
+    // Guardar en Sheets
+    _registrarCotizacion(datos);
+
+    // Enviar correos
+    _enviarEmailCliente(datos);
+    _enviarNotificacionAgente(datos);
+
+    return _jsonResp({ status: 'ok' });
+
+  } catch (err) {
+    console.error('doPost error:', err);
+    return _jsonResp({ status: 'error', msg: 'Error interno' });
+  }
+}
+
+function doGet() {
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: 'online', app: 'Cotizador RT Construcción' }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
