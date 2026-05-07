@@ -21,7 +21,7 @@ const TASA_PRIMA           = 0.0398; // 3.98% del monto asegurado
 // ─── Logging en Sheets ────────────────────────────────────────────────────────
 function _registrarCotizacion(datos) {
   const ss    = SpreadsheetApp.openById(SHEET_ID);
-  const hoja  = ss.getSheetByName(SHEET_NAME);
+  const hoja  = ss.getSheetByName(SHEET_NAME) || ss.getSheets()[0];
   hoja.appendRow([
     new Date(),
     datos.nombre,
@@ -118,7 +118,7 @@ function doPost(e) {
 
   } catch (err) {
     console.error('doPost error:', err);
-    return _jsonResp({ status: 'error', msg: 'Error interno' });
+    return _jsonResp({ status: 'error', msg: String(err) });
   }
 }
 
