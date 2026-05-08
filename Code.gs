@@ -140,8 +140,8 @@ function htmlFormulario() {
   :root{--ins-dark:#0B1F3D;--ins-blue:#003DA5;--ins-blue-l:#1E6EE8;--ins-green:#00A859;--ins-yellow:#FFD100;--gray-50:#F9FAFB;--gray-100:#F3F4F6;--gray-200:#E5E7EB;--gray-400:#9CA3AF;--gray-500:#6B7280;--gray-700:#374151;--gray-900:#111827}
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{height:100%}
-  html{overflow-x:hidden}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:linear-gradient(135deg,#f6f9fc 0%,#eef4fb 100%);color:var(--gray-900);-webkit-font-smoothing:antialiased;padding:12px;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;overflow-x:hidden}
+  html{overflow-x:hidden;background:transparent}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:transparent;color:var(--gray-900);-webkit-font-smoothing:antialiased;padding:12px;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow-x:hidden}
   .card{background:#fff;border-radius:14px;overflow:hidden;width:100%;max-width:480px;box-shadow:0 16px 40px -12px rgba(11,31,61,.18),0 4px 12px -4px rgba(11,31,61,.08)}
   .header{background:linear-gradient(135deg,var(--ins-blue) 0%,var(--ins-blue-l) 100%);padding:20px 24px;text-align:center}
   .header-badge{display:inline-block;background:var(--ins-yellow);color:var(--ins-dark);font-size:10px;font-weight:800;padding:3px 10px;border-radius:999px;letter-spacing:.5px;margin-bottom:8px}
