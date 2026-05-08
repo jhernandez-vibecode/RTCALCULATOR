@@ -210,6 +210,66 @@
     border-top: 1px solid var(--gray-100);
   }
 
+  /* Consentimiento */
+  .consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px;
+    background: var(--gray-50);
+    border-radius: 8px;
+    border: 1px solid var(--gray-200);
+  }
+  .consent input[type="checkbox"] {
+    width: 18px; height: 18px; margin: 0; flex-shrink: 0;
+    accent-color: var(--ins-blue); cursor: pointer; margin-top: 1px;
+  }
+  .consent-text { font-size: 11px; line-height: 1.5; color: var(--gray-700); }
+  .consent-text a { color: var(--ins-blue); text-decoration: none; font-weight: 600; cursor: pointer; }
+  .consent-text a:hover { text-decoration: underline; }
+
+  /* Modal aviso legal */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(11,31,61,.7); z-index: 100;
+    align-items: center; justify-content: center; padding: 16px;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal-card {
+    background: #fff; border-radius: 14px; max-width: 520px; width: 100%;
+    max-height: 80vh; overflow-y: auto; padding: 24px; position: relative;
+  }
+  .modal-close {
+    position: absolute; top: 12px; right: 12px;
+    background: var(--gray-100); border: none; width: 32px; height: 32px;
+    border-radius: 50%; cursor: pointer; font-size: 18px; line-height: 1; color: var(--gray-700);
+  }
+  .modal-card h2 { font-size: 16px; color: var(--ins-dark); margin-bottom: 14px; padding-right: 32px; }
+  .modal-card h3 { font-size: 13px; color: var(--ins-blue); margin-top: 14px; margin-bottom: 6px; }
+  .modal-card p { font-size: 12px; color: var(--gray-700); line-height: 1.6; margin-bottom: 8px; }
+  .modal-card ul { padding-left: 20px; margin-bottom: 8px; }
+  .modal-card li { font-size: 12px; color: var(--gray-700); line-height: 1.6; margin-bottom: 4px; }
+
+  /* Footer SDI */
+  .sdi-footer {
+    width: 100%; max-width: 480px; margin-top: 16px;
+    padding: 20px; background: var(--ins-dark); border-radius: 14px;
+    text-align: center; color: #fff;
+  }
+  .sdi-logo {
+    display: inline-flex; align-items: center; gap: 10px; margin-bottom: 8px;
+  }
+  .sdi-logo .sdi-text {
+    font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 1;
+  }
+  .sdi-bars { display: flex; flex-direction: column; gap: 4px; }
+  .sdi-bars span {
+    display: block; background: #fff; width: 28px; height: 5px; border-radius: 2px;
+  }
+  .sdi-tagline { font-size: 9px; color: rgba(255,255,255,.6); letter-spacing: 3px; margin-bottom: 12px; }
+  .sdi-copy { font-size: 10px; color: rgba(255,255,255,.5); line-height: 1.7; }
+  .sdi-copy a { color: rgba(255,255,255,.7); text-decoration: none; }
+
   /* Botón volver */
   .back-bar {
     width: 100%;
@@ -290,6 +350,13 @@
       <span class="field-hint">Ingresá el costo total de la construcción en colones</span>
     </div>
 
+    <label class="consent" for="consentCheck">
+      <input type="checkbox" id="consentCheck" required>
+      <span class="consent-text">
+        Acepto que mis datos personales sean tratados por Juan Carlos Hernández Vargas (Agente exclusivo INS, Licencia SUGESE 08-1318) con la finalidad exclusiva de procesar esta cotización y dar seguimiento comercial. <a id="abrirAviso">Ver aviso de privacidad</a>
+      </span>
+    </label>
+
     <div>
       <button type="submit" class="btn-submit" id="btnSubmit">
         <span class="label">Solicitar cotización al correo →</span>
@@ -317,7 +384,60 @@
   </div>
 </div>
 
+<!-- Footer SDI -->
+<div class="sdi-footer">
+  <div class="sdi-logo">
+    <span class="sdi-text">SDI</span>
+    <div class="sdi-bars">
+      <span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="sdi-tagline">SEGUROS DIGITALES</div>
+  <div class="sdi-copy">
+    © Propiedad intelectual de Juan Carlos Hernández Vargas<br>
+    Seguros Digitales SDI — Todos los derechos reservados<br>
+    Agente exclusivo INS · Licencia SUGESE 08-1318
+  </div>
+</div>
+
 </div><!-- /page-wrap -->
+
+<!-- Modal aviso legal -->
+<div class="modal-overlay" id="modalAviso">
+  <div class="modal-card">
+    <button class="modal-close" id="cerrarAviso" aria-label="Cerrar">×</button>
+    <h2>Aviso de Privacidad y Tratamiento de Datos</h2>
+
+    <h3>Responsable del tratamiento</h3>
+    <p>Juan Carlos Hernández Vargas, Agente Exclusivo del Instituto Nacional de Seguros (INS), Licencia SUGESE 08-1318. Correo: jhernandez@segurosdelins.com</p>
+
+    <h3>Datos recolectados</h3>
+    <p>Nombre completo, número de teléfono, correo electrónico y valor de la obra a asegurar.</p>
+
+    <h3>Finalidad</h3>
+    <p>Los datos serán utilizados exclusivamente para:</p>
+    <ul>
+      <li>Calcular y enviar la cotización solicitada del Seguro RT Construcción.</li>
+      <li>Comunicar los requisitos para emitir la póliza.</li>
+      <li>Dar seguimiento comercial al proceso de cotización.</li>
+    </ul>
+
+    <h3>Base legal</h3>
+    <p>El tratamiento se realiza con base en su consentimiento expreso, otorgado al marcar la casilla de aceptación del formulario, conforme a la Ley de Protección de la Persona frente al tratamiento de sus datos personales (Ley N° 8968) de Costa Rica.</p>
+
+    <h3>Conservación</h3>
+    <p>Los datos se conservarán durante el tiempo necesario para gestionar la cotización y, en caso de contratación, durante la vigencia de la póliza más los plazos legales aplicables.</p>
+
+    <h3>Derechos del titular</h3>
+    <p>Usted puede ejercer en cualquier momento los derechos de acceso, rectificación, eliminación y oposición al tratamiento de sus datos, escribiendo a jhernandez@segurosdelins.com.</p>
+
+    <h3>Confidencialidad</h3>
+    <p>Sus datos no serán compartidos con terceros distintos al INS para efectos de la emisión de la póliza, ni utilizados con fines de mercadeo masivo sin su autorización adicional.</p>
+
+    <h3>Aviso legal</h3>
+    <p>La cotización es una estimación referencial. El monto final, la cobertura y la emisión están sujetos a la aprobación del INS y a la verificación de los documentos requeridos. Esta cotización tiene una vigencia de 15 días naturales y la póliza puede ser contratada por un máximo de 11 meses y medio.</p>
+  </div>
+</div>
 
 <script>
 const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbwapSr3aJSnGVS-nC6LlwfXlWp1U5LS63QP4iKjr6ZKgQeS2BxgvQ3HWZiPpSabNhF7TQ/exec';
@@ -385,8 +505,26 @@ function validarForm() {
   } else {
     montoEl.classList.remove('error');
   }
+  if (!document.getElementById('consentCheck').checked) {
+    errMsg.textContent = 'Debés aceptar el aviso de privacidad para continuar.';
+    errMsg.classList.add('show');
+    ok = false;
+  }
   return ok;
 }
+
+// Modal aviso legal
+const modal = document.getElementById('modalAviso');
+document.getElementById('abrirAviso').addEventListener('click', (e) => {
+  e.preventDefault();
+  modal.classList.add('show');
+});
+document.getElementById('cerrarAviso').addEventListener('click', () => {
+  modal.classList.remove('show');
+});
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) modal.classList.remove('show');
+});
 
 // Máscara ₡ con separadores de miles
 const montoInput = document.getElementById('montoObra');
