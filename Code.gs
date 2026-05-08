@@ -410,8 +410,8 @@ function _enviarEmailCliente(d) {
 
   <!-- CTA WHATSAPP -->
   <tr><td style="background:#ffffff;padding:0 32px 24px 32px;text-align:center">
-    <a href="${AGENTE.waLink}" style="display:inline-block;background:#25D366;color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;padding:14px 32px;border-radius:8px">
-      📱 Contactar al agente por WhatsApp
+    <a href="https://wa.me/506${AGENTE.telefono.replace(/[^0-9]/g,'')}?text=${encodeURIComponent('Hola Juan Carlos, recibí mi cotización del Seguro RT Construcción y tengo una consulta.')}" style="display:inline-block;background:#25D366;color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;padding:14px 32px;border-radius:8px">
+      📱 Consultar al agente por WhatsApp
     </a>
   </td></tr>
 
@@ -469,9 +469,10 @@ function _enviarEmailCliente(d) {
 // ─── Notificación al agente ───────────────────────────────────────────────────
 function _enviarNotificacionAgente(d) {
   const waCliente = 'https://wa.me/506' + d.telefono.replace(/[^0-9]/g, '');
+  const primerNombreCliente = d.nombre.split(' ')[0];
   const mensaje   = encodeURIComponent(
-    'Hola ' + d.nombre + ', le escribo de parte de Juan Carlos Hernández (Seguros INS) ' +
-    'con respecto a su cotización del Seguro RT Construcción. ¿Tiene alguna consulta?'
+    'Hola ' + primerNombreCliente + ', soy Juan Carlos Hernández, Agente Exclusivo del INS. ' +
+    'Recibimos tu solicitud de cotización del Seguro RT Construcción. ¿En qué te puedo ayudar?'
   );
 
   const html = `<div style="font-family:Arial,sans-serif;max-width:500px;padding:24px;border:2px solid #003DA5;border-radius:10px">
