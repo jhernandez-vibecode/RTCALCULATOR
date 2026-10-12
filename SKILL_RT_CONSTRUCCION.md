@@ -2,6 +2,8 @@
 **Última actualización:** 8 mayo 2026  
 **Estado:** EN PRODUCCIÓN — pendiente solo embed Google Sites
 
+**12 oct 2026:** marca «SDI Seguros Digitales INS» — el pie de `index.html` y `cotizador-construccion.html` cambia el logo armado a mano (spans + barras CSS + «SEGUROS DIGITALES») por el SVG del kit v1.4 (04 negativo, en línea, 68 px de alto); el correo al cliente (`Code.gs`, lo implementa JC) sigue con SDI + barras en tabla pero dice «SEGUROS DIGITALES INS» y «SDI Seguros Digitales INS — Todos los derechos reservados».
+
 ---
 
 ## Qué es este proyecto

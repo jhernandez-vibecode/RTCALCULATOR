@@ -447,10 +447,10 @@ function _enviarEmailCliente(d) {
         </td>
       </tr>
     </table>
-    <p style="margin:0 0 8px 0;color:rgba(255,255,255,.6);font-size:10px;font-weight:500;letter-spacing:3px">SEGUROS DIGITALES</p>
+    <p style="margin:0 0 8px 0;color:rgba(255,255,255,.6);font-size:10px;font-weight:500;letter-spacing:3px">SEGUROS DIGITALES INS</p>
     <p style="margin:0;color:rgba(255,255,255,.4);font-size:10px;line-height:1.7">
       © Propiedad intelectual de Juan Carlos Hernández Vargas<br>
-      Seguros Digitales SDI — Todos los derechos reservados
+      SDI Seguros Digitales INS — Todos los derechos reservados
     </p>
   </td></tr>
 
