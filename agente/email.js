@@ -186,9 +186,7 @@ window.REmail = (function () {
   function b64Lineas(b64) { return b64.replace(/(.{76})/g, '$1\r\n'); }
   function utf8B64(str) { return btoa(unescape(encodeURIComponent(str))); }
 
-  // attachments = [{ nombre, b64 }]. Va por el endpoint de SUBIDA de Gmail
-  // (message/rfc822, hasta 35 MB): una emisión con los 9 PDF pasa los ~5 MB que
-  // aguanta el envío común en JSON.
+  // attachments = [{ nombre, b64 }].
   async function enviar(o, token) {
     const boundary = 'sdirt_' + Math.random().toString(36).slice(2);
     let mime = 'To: ' + o.to + '\r\n' + (o.cc ? 'Cc: ' + o.cc + '\r\n' : '') +
@@ -207,8 +205,13 @@ window.REmail = (function () {
       }
       mime += '--' + boundary + '--';
     }
-    const res = await fetch('https://gmail.googleapis.com/upload/gmail/v1/users/me/messages/send?uploadType=media', {
-      method: 'POST', headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'message/rfc822' }, body: mime
+    // 🔴 11 nov 2026: el endpoint de SUBIDA (upload/...?uploadType=media) no
+    // responde CORS a un navegador → «Failed to fetch» en el primer envío real.
+    // El de siempre (JSON con raw, como Viajero) aceptó un mensaje de 9 MB en
+    // base64 en la prueba del mismo día: alcanza para los 9 PDF de una emisión.
+    const raw = btoa(unescape(encodeURIComponent(mime))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    const res = await fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send', {
+      method: 'POST', headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' }, body: JSON.stringify({ raw })
     });
     if (!res.ok) throw new Error('Gmail ' + res.status + ': ' + (await res.text()).slice(0, 300));
     return res.json();

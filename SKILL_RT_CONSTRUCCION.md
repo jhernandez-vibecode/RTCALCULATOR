@@ -10,7 +10,7 @@
 - **Emitir:** recibe PDF, ZIP o carpeta. `parse.js` clasifica por nombre de archivo (constancia, particulares, especiales, perfeccionamiento, bienvenida, comprobante, generales, norma, manual) y lee los datos de las **Condiciones Particulares** (póliza, vigencia, tomador APELLIDO APELLIDO NOMBRE → saludo, correo, distrito/cantón/provincia, actividad, monto, tarifa, prima, boleta CFIA). Probado con el texto real de la póliza 0410520.
 - Correo de emisión: la **Constancia de Póliza Vigente = documento del trámite municipal** (recuadro durazno + fila 01 con fondo, pedido de JC); lo que debe saber con cita a las Condiciones Especiales (2.b sin planillas, 5 no se renueva, 2.a el dueño no está cubierto, 3 y 9 prima devengada); accidente: 8 días hábiles por RT Virtual; 800-TeleINS y KAL.
 - Los 3 **generales fijos** van en `agente/docs/` (`condiciones-generales-2025.pdf`, `norma-tecnica-2025.pdf`, `manual-rt-virtual.pdf`); si faltan, el envío se bloquea (el correo dice que el manual va adjunto). Si el agente los arrastra con la emisión se usan esos y no se duplican.
-- Envío por el endpoint de SUBIDA de Gmail (`upload/...?uploadType=media`, message/rfc822, hasta 35 MB): los 9 PDF pasan los ~5 MB del envío JSON.
+- Envío por `gmail/v1/users/me/messages/send` con `{raw}` en JSON (igual que Viajero). 🔴 NO usar el endpoint de SUBIDA (`upload/...?uploadType=media|multipart|resumable`): no responde CORS al navegador → «Failed to fetch» (primer envío real, 11 nov 2026). El JSON aceptó 9 MB en base64 en la prueba: alcanza para los 9 PDF (~5,3 MB).
 - Prueba local sin login: `http://localhost:5173/agente/?demo=1` (envío apagado). Historial en localStorage del navegador.
 
 ---
