@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mockup · Consola RT Construcción</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,400..700&family=Google+Sans+Code:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="file:///C:/Users/segur/SDI-BRAND-KIT/linea-clara/linea-clara.css">
+<style>
+  :root{ --lc-prod:#EA580C; --lc-prod-tint:color-mix(in srgb,#EA580C 11%,white); }
+  body{margin:0}
+  a{color:var(--lc-blue)}
+  /* barra del mockup (no es parte del diseño) */
+  .mk{position:sticky;top:0;z-index:9;background:#1B1F23;color:#fff;font:13px/1 system-ui;display:flex;gap:6px;padding:8px 12px;align-items:center;flex-wrap:wrap}
+  .mk b{margin-right:10px;font-weight:600}
+  .mk a{color:#cfd6dc;text-decoration:none;padding:7px 12px;border-radius:999px}
+  .mk a.on{background:#fff;color:#1B1F23}
+  .view{display:none}.view.on{display:block}
+
+  /* ---------- consola ---------- */
+  .grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start}
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+  .field .lc-input{width:100%;box-sizing:border-box;min-height:44px;font-size:15px}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .seg{display:flex;gap:8px;flex-wrap:wrap}
+  .calc .lc-row span:first-child{color:var(--lc-ink-2);font-size:13.5px}
+  .calc .tot span:first-child{color:var(--lc-ink);font-size:14px}
+  .acts{display:flex;gap:10px;justify-content:flex-end;margin-top:22px;flex-wrap:wrap}
+  .sub{font-size:13.5px;color:var(--lc-ink-2);margin:8px 0 22px}
+  .drop{border:1.5px dashed var(--lc-line-btn);border-radius:var(--lc-r-md);padding:28px;text-align:center;background:#fff}
+  .drop .t{font-family:var(--font-display);font-size:17px;font-weight:600}
+  .drop .s{font-size:13px;color:var(--lc-ink-3);margin-top:6px}
+  .doclist{margin-top:18px}
+  .doc{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--lc-line-soft);font-size:13.5px}
+  .doc:last-child{border-bottom:0}
+  .doc .ok{width:8px;height:8px;border-radius:50%;background:var(--lc-ok-tx);flex-shrink:0}
+  .doc .nm{flex:1;min-width:0}
+  .doc .fn{font-family:var(--font-mono);font-size:11px;color:var(--lc-ink-3);display:block;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .doc .tag{font-size:11.5px;color:var(--lc-ink-3);white-space:nowrap}
+  .grp{font-size:11.5px;font-weight:600;color:var(--lc-ink-3);padding:14px 16px 6px;letter-spacing:.02em}
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;font-size:13.5px}
+  .kv dt{color:var(--lc-ink-3)}
+  .kv dd{margin:0;color:var(--lc-ink);font-weight:500}
+  .kv dd.m{font-family:var(--font-mono);font-weight:500}
+  .foot-agent{font-size:11.5px;color:var(--lc-ink-3);text-align:center;padding:22px 0 30px}
+  @media (max-width:900px){.grid2{grid-template-columns:1fr}}
+
+  /* ---------- correos (formas de correo: Arial, cifras en Courier New) ---------- */
+  .mailbg{background:#F1F3F4;padding:32px 12px 48px}
+  .mailhead{max-width:600px;margin:0 auto 10px;font:12.5px Arial,sans-serif;color:#5A6570}
+  .mailhead b{color:#1B1F23}
+  .mail{max-width:600px;margin:0 auto;background:#fff;border-radius:24px;overflow:hidden;font-family:Arial,Helvetica,sans-serif;color:#1B1F23}
+  .m-top{padding:30px 36px 22px;text-align:left}
+  .m-top img{height:34px;filter:brightness(0)}
+  .filete{display:flex;height:4px}.filete i{flex:1}
+  .m-body{padding:30px 36px 8px}
+  .m-k{font-size:12px;font-weight:bold;color:#6B7681;letter-spacing:.02em}
+  .m-k::before{content:"";display:block;width:28px;height:3px;border-radius:2px;background:#EA580C;margin-bottom:10px}
+  .m-h1{font-size:26px;line-height:1.2;font-weight:normal;margin:8px 0 12px;letter-spacing:-.01em}
+  .m-p{font-size:15px;line-height:1.6;color:#3C4650;margin:0 0 14px}
+  .m-state{display:inline-block;background:#E9F5F0;color:#037D61;font-size:12.5px;font-weight:bold;padding:6px 14px;border-radius:999px;margin-bottom:16px}
+  .m-tbl{width:100%;border-collapse:collapse;border:1px solid #DADCE0;border-radius:20px;overflow:hidden;margin:6px 0 26px}
+  .m-tbl td{padding:13px 18px;border-bottom:1px solid #EDEFF2;font-size:14px}
+  .m-tbl tr:last-child td{border-bottom:0}
+  .m-tbl td:first-child{color:#5A6570}
+  .m-tbl td.n{font-family:'Courier New',monospace;text-align:right;font-weight:bold;color:#1B1F23}
+  .m-tbl tr.tot td{background:#EEF4F9;color:#1B1F23;font-weight:bold}
+  .m-big{text-align:center;padding:22px 0 8px}
+  .m-big .l{font-size:12.5px;color:#6B7681}
+  .m-big .v{font-family:'Courier New',monospace;font-size:38px;font-weight:bold;letter-spacing:-.02em;margin-top:4px}
+  .m-big .s{font-size:12.5px;color:#6B7681;margin-top:6px}
+  .m-h2{font-size:19px;font-weight:normal;margin:30px 0 14px}
+  .m-li{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid #EDEFF2;font-size:14.5px;line-height:1.55;color:#3C4650}
+  .m-li:last-child{border-bottom:0}
+  .m-li .d{width:8px;height:8px;border-radius:50%;background:#EA580C;margin-top:7px;flex-shrink:0}
+  .m-li b{color:#1B1F23}
+  .m-li .ref{display:block;font-size:12px;color:#6B7681;margin-top:3px}
+  .m-iso{background:#FDF0E7;border:1px solid #F6D3BC;border-radius:20px;padding:20px 22px;margin:4px 0 18px}
+  .m-iso .t{font-size:12px;font-weight:bold;color:#6B7681;letter-spacing:.02em}
+  .m-iso .n{font-size:18px;margin:6px 0 6px;color:#1B1F23}
+  .m-iso .f{font-family:'Courier New',monospace;font-size:12px;color:#5A6570}
+  .m-iso p{font-size:14px;line-height:1.55;color:#3C4650;margin:10px 0 0}
+  .m-docs td{padding:11px 0;border-bottom:1px solid #EDEFF2;font-size:14px;vertical-align:top}
+  .m-docs td.i{width:26px;color:#6B7681;font-family:'Courier New',monospace;font-size:13px}
+  .m-docs .s{display:block;font-size:12.5px;color:#6B7681;margin-top:2px}
+  .m-band{background:#EEF4F9;border-radius:20px;padding:20px 22px;margin:8px 0 10px}
+  .m-band .t{font-size:12px;font-weight:bold;color:#6B7681}
+  .m-band .tel{font-family:'Courier New',monospace;font-size:20px;font-weight:bold;color:#1B1F23;margin-top:6px}
+  .m-btn{display:inline-block;background:#0369A1;color:#fff !important;text-decoration:none;font-weight:bold;font-size:15px;padding:14px 30px;border-radius:999px}
+  .m-agent{padding:26px 36px;border-top:1px solid #EDEFF2;font-size:13px;line-height:1.6;color:#5A6570}
+  .m-agent b{color:#1B1F23;font-size:14.5px}
+  .m-agent .lic{font-family:'Courier New',monospace;font-size:12px}
+  .m-sdi{background:#EEF4F9;padding:22px 36px;text-align:center;font-size:11.5px;color:#6B7681}
+  .m-sdi img{height:26px;display:block;margin:0 auto 8px}
+  @media (max-width:640px){.m-top,.m-body,.m-agent,.m-sdi{padding-left:22px;padding-right:22px}.m-big .v{font-size:32px}.row2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="mk"><b>Mockup RT Construcción · datos de ejemplo</b>
+  <a href="#cotizar" data-v="cotizar">1 · Consola: Cotizar</a>
+  <a href="#emitir" data-v="emitir">2 · Consola: Emitir</a>
+  <a href="#correo-emision" data-v="correo-emision">3 · Correo de emisión</a>
+  <a href="#correo-cotizacion" data-v="correo-cotizacion">4 · Correo de cotización</a>
+</nav>
+
+<!-- ======================= CONSOLA (barra común) ======================= -->
+<template id="barra">
+  <div class="lc-topbar"><div class="lc-wrap">
+    <img src="file:///C:/Users/segur/SDI-BRAND-KIT/logos/02-sdi-logo-compacto.svg" alt="SDI Seguros Digitales INS">
+    <div class="meta"><strong>Juan Carlos Hernández Vargas</strong> · Agente exclusivo INS <span class="lic">SUGESE 08-1318</span></div>
+  </div></div>
+  <div class="lc-nav"><div class="lc-wrap">
+    <div class="l"><span class="prod">RT Construcción</span>
+      <div class="links"><a href="#cotizar" class="t-cot">Cotizar</a><a href="#emitir" class="t-emi">Emitir</a><a href="#">Historial</a></div></div>
+    <a class="lc-pill lc-pill-out lc-pill-sm" href="#">Página del cliente</a>
+  </div></div>
+</template>
+
+<!-- ======================= 1 · COTIZAR ======================= -->
+<section class="view" id="v-cotizar">
+  <div class="slot-barra" data-on="t-cot"></div>
+  <div class="lc-hero lc-in" style="padding-bottom:36px">
+    <span class="lc-state">Tarifa vigente 3,98 %</span>
+    <h1>Cotizar RT Construcción</h1>
+    <p class="lead">Escribí el valor de la obra y le llega al cliente una cotización clara, con los requisitos y lo que tiene que saber de la póliza.</p>
+  </div>
+  <div class="lc-band"><div class="lc-wrap">
+    <div class="lc-panel lc-in lc-in-2">
+      <div class="grid2">
+        <div>
+          <div class="lc-k">Cliente</div>
+          <h2 class="lc-h-sec" style="font-size:22px">¿A quién le cotizamos?</h2>
+          <p class="sub">El correo sale desde tu cuenta de Gmail, con copia para vos.</p>
+          <div class="field"><label class="lc-label">Nombre completo</label><input class="lc-input" value="María Fernanda Solís Araya"></div>
+          <div class="row2">
+            <div class="field"><label class="lc-label">Correo</label><input class="lc-input" value="mfsolis@ejemplo.com"></div>
+            <div class="field"><label class="lc-label">Teléfono / WhatsApp</label><input class="lc-input" value="8888 0000"></div>
+          </div>
+          <div class="field"><label class="lc-label">Valor de la obra (boleta CFIA o Municipalidad)</label><input class="lc-input lc-mono" value="₡ 50.000.000"></div>
+          <div class="field"><label class="lc-label">¿Quién es el tomador?</label>
+            <div class="seg"><button class="lc-pill lc-pill-ghost lc-pill-sm on">Persona física</button><button class="lc-pill lc-pill-ghost lc-pill-sm">Sociedad</button></div>
+            <span class="lc-fine" style="margin-top:4px">Si es sociedad, el correo pide además la personería jurídica.</span>
+          </div>
+        </div>
+        <div>
+          <div class="lc-k">Cálculo</div>
+          <h2 class="lc-h-sec" style="font-size:22px">Lo que ve el cliente</h2>
+          <p class="sub">Monto asegurado = 35 % del valor de la obra.</p>
+          <div style="text-align:center;padding:10px 0 22px">
+            <div class="lc-big-lbl">Prima a pagar (pago único)</div>
+            <div class="lc-big">₡696.500</div>
+          </div>
+          <div class="lc-rows calc">
+            <div class="lc-row"><span>Valor de la obra</span><span class="lc-amt">₡50.000.000</span></div>
+            <div class="lc-row"><span>Monto asegurado (35 %)</span><span class="lc-amt">₡17.500.000</span></div>
+            <div class="lc-row"><span>Tarifa</span><span class="lc-amt">3,98 %</span></div>
+            <div class="lc-row tot"><span>Prima</span><span class="lc-amt">₡696.500</span></div>
+          </div>
+          <p class="lc-fine">La tarifa depende de la actividad. Si el INS da otra, se cambia aquí y el cálculo se rehace.</p>
+          <div class="acts">
+            <button class="lc-pill lc-pill-out">Ver el correo</button>
+            <button class="lc-pill lc-pill-fill">Enviar cotización</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+  <div class="foot-agent">Registro de cambios · v1.0 · 11 nov 2026 — consola nueva: cotizar y emitir</div>
+</section>
+
+<!-- ======================= 2 · EMITIR ======================= -->
+<section class="view" id="v-emitir">
+  <div class="slot-barra" data-on="t-emi"></div>
+  <div class="lc-hero lc-in" style="padding-bottom:36px">
+    <span class="lc-state">Póliza leída · lista para enviar</span>
+    <h1>Enviar la emisión al cliente</h1>
+    <p class="lead">Arrastrá los PDF o el ZIP que te da el INS. La app lee la póliza, ordena los documentos y arma el correo de bienvenida.</p>
+  </div>
+  <div class="lc-band"><div class="lc-wrap">
+    <div class="lc-panel lc-in lc-in-2">
+      <div class="grid2">
+        <div>
+          <div class="lc-k">Documentos</div>
+          <h2 class="lc-h-sec" style="font-size:22px">9 adjuntos listos</h2>
+          <p class="sub">Los 3 documentos generales ya van siempre; solo se suben los de esta póliza.</p>
+          <div class="drop">
+            <div class="t">Soltá aquí los PDF, el ZIP o la carpeta</div>
+            <div class="s">Como en Viajero: archivos sueltos, comprimidos o la carpeta entera · se reconocen por el nombre del archivo</div>
+            <div style="display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap">
+              <button class="lc-pill lc-pill-out lc-pill-sm">Elegir archivos</button>
+              <button class="lc-pill lc-pill-out lc-pill-sm">Elegir carpeta</button>
+            </div>
+          </div>
+          <div class="lc-fine" style="display:flex;align-items:center;gap:8px"><span class="lc-dot ok"></span>Se abrió <span class="lc-mono">0412345_Emision_RT.zip</span> · 6 PDF reconocidos</div>
+          <div class="lc-rows doclist">
+            <div class="grp">DE ESTA PÓLIZA</div>
+            <div class="doc"><span class="ok"></span><span class="nm">Constancia de Póliza Vigente<span class="fn">0412345_Constancia_Poliza_Vigente_Riesgos_del_Trabajo.pdf</span></span><span class="lc-chip">Trámite municipal</span></div>
+            <div class="doc"><span class="ok"></span><span class="nm">Condiciones Particulares<span class="fn">0412345_Condiciones_Particulares_Riesgos_del_Trabajo.pdf</span></span><span class="tag">datos leídos</span></div>
+            <div class="doc"><span class="ok"></span><span class="nm">Condiciones Especiales RT Construcción<span class="fn">0412345_500_003_Condiciones_Especiales_RT_Construccion.pdf</span></span></div>
+            <div class="doc"><span class="ok"></span><span class="nm">Información previa al perfeccionamiento<span class="fn">0412345_Perfeccionamiento_del_Contrato_RT_Construccion.pdf</span></span></div>
+            <div class="doc"><span class="ok"></span><span class="nm">Carta de bienvenida del INS<span class="fn">0412345_Carta_Bienvenida_Clientes_RT.pdf</span></span></div>
+            <div class="doc"><span class="ok"></span><span class="nm">Comprobante de pago<span class="fn">Comprobante De Pago.pdf</span></span></div>
+            <div class="grp">GENERALES · VAN SIEMPRE</div>
+            <div class="doc"><span class="ok"></span><span class="nm">Condiciones Generales 2025</span><span class="tag">fijo</span></div>
+            <div class="doc"><span class="ok"></span><span class="nm">Norma Técnica 2025</span><span class="tag">fijo</span></div>
+            <div class="doc"><span class="ok"></span><span class="nm">Manual de acceso a RT Virtual</span><span class="tag">fijo</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="lc-k">Póliza</div>
+          <h2 class="lc-h-sec" style="font-size:22px">Lo que leyó la app</h2>
+          <p class="sub">Revisá antes de enviar; cualquier dato se puede corregir a mano.</p>
+          <div class="lc-block" style="padding:24px 26px">
+            <dl class="kv">
+              <dt>Tomador</dt><dd>María Fernanda Solís Araya</dd>
+              <dt>Cédula</dt><dd class="m">1-1111-1111</dd>
+              <dt>Póliza</dt><dd class="m">0412345</dd>
+              <dt>Vigencia</dt><dd class="m">01/12/2026 → 31/03/2027</dd>
+              <dt>Lugar de la obra</dt><dd>Santa Ana, San José</dd>
+              <dt>Actividad</dt><dd>Construcción de vivienda</dd>
+              <dt>Boleta CFIA</dt><dd class="m">1234567</dd>
+              <dt>Monto asegurado</dt><dd class="m">₡17.500.000</dd>
+              <dt>Prima pagada</dt><dd class="m">₡696.500</dd>
+              <dt>Correo del cliente</dt><dd>mfsolis@ejemplo.com</dd>
+            </dl>
+          </div>
+          <div class="acts">
+            <button class="lc-pill lc-pill-out">Ver el correo</button>
+            <button class="lc-pill lc-pill-fill">Enviar emisión</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+  <div class="foot-agent">Registro de cambios · v1.0 · 11 nov 2026 — consola nueva: cotizar y emitir</div>
+</section>
+
+<!-- ======================= 3 · CORREO DE EMISIÓN ======================= -->
+<section class="view" id="v-correo-emision">
+  <div class="mailbg">
+    <div class="mailhead"><b>Asunto:</b> Su póliza de Riesgos del Trabajo · Construcción está activa · 0412345<br><b>Adjuntos:</b> 9 documentos PDF</div>
+    <div class="mail">
+      <div class="m-top"><img src="../../../logo-ins-blanco.png" alt="INS"></div>
+      <div class="filete"><i style="background:#0369A1"></i><i style="background:#0D9488"></i><i style="background:#EA580C"></i><i style="background:#C9A227"></i></div>
+      <div class="m-body">
+        <span class="m-state">● Póliza activa</span>
+        <div class="m-k">RIESGOS DEL TRABAJO · CONSTRUCCIÓN</div>
+        <h1 class="m-h1">Su obra ya está asegurada, María Fernanda</h1>
+        <p class="m-p">Le adjunto los documentos de su póliza. Abajo le resumo lo más importante para que no tenga que leerlos todos.</p>
+
+        <table class="m-tbl">
+          <tr><td>Póliza</td><td class="n">0412345</td></tr>
+          <tr><td>Vigencia</td><td class="n">01/12/2026 al 31/03/2027</td></tr>
+          <tr><td>Lugar de la obra</td><td class="n" style="font-family:Arial">Santa Ana, San José</td></tr>
+          <tr><td>Monto asegurado</td><td class="n">₡17.500.000</td></tr>
+          <tr class="tot"><td>Prima pagada</td><td class="n">₡696.500</td></tr>
+        </table>
+
+        <div class="m-k">PARA EL PERMISO DE CONSTRUCCIÓN</div>
+        <div class="m-iso" style="margin-top:12px">
+          <div class="t">EL DOCUMENTO QUE VA A LA MUNICIPALIDAD</div>
+          <div class="n">Constancia de Póliza Vigente</div>
+          <div class="f">0412345_Constancia_Poliza_Vigente_Riesgos_del_Trabajo.pdf</div>
+          <p>Este es el que presenta en la Municipalidad para el trámite del permiso. Los demás documentos son para que usted los guarde.</p>
+        </div>
+
+        <h2 class="m-h2">Lo que debe saber de su póliza</h2>
+        <div class="m-li"><span class="d"></span><div><b>No tiene que presentar planillas.</b> Esta póliza está exonerada de reportar planillas y de incluir trabajadores nuevos.<span class="ref">Condiciones Especiales, punto 2.b</span></div></div>
+        <div class="m-li"><span class="d"></span><div><b>No se renueva.</b> Si la obra se atrasa, avíseme antes del 31/03/2027 para pedir la extensión; se necesita el permiso vigente y copia de la bitácora.<span class="ref">Condiciones Especiales, punto 5</span></div></div>
+        <div class="m-li"><span class="d"></span><div><b>Usted como dueño no está cubierto.</b> La póliza protege a las personas que trabajan en la obra.<span class="ref">Condiciones Especiales, punto 2.a</span></div></div>
+        <div class="m-li"><span class="d"></span><div><b>La prima no se devuelve al terminar antes.</b> Solo hay devolución si la obra no se llega a construir, con la anulación del permiso.<span class="ref">Condiciones Especiales, puntos 3 y 9</span></div></div>
+
+        <h2 class="m-h2">Si un trabajador se accidenta</h2>
+        <div class="m-li"><span class="d"></span><div><b>Repórtelo en los 8 días hábiles siguientes</b> con el «Aviso de accidente» en RT Virtual (el manual va adjunto) o escríbame y lo hacemos juntos.</div></div>
+        <div class="m-li"><span class="d"></span><div><b>El trabajador se atiende en el centro de salud del INS</b> más cercano a la obra o a su casa.</div></div>
+        <div class="m-band">
+          <div class="t">CONSULTAS DEL INS</div>
+          <div class="tel">800-835-3467</div>
+          <div style="font-size:12.5px;color:#5A6570;margin-top:4px">800-TeleINS · WhatsApp KAL 2287-6100</div>
+        </div>
+
+        <h2 class="m-h2">Documentos adjuntos</h2>
+        <table class="m-docs" style="width:100%;border-collapse:collapse">
+          <tr style="background:#FDF0E7"><td class="i" style="padding-left:10px">01</td><td><b>Constancia de Póliza Vigente</b><span class="s">Para el trámite municipal</span></td></tr>
+          <tr><td class="i">02</td><td>Condiciones Particulares<span class="s">Datos de su póliza, monto asegurado y prima</span></td></tr>
+          <tr><td class="i">03</td><td>Condiciones Especiales RT Construcción<span class="s">Las reglas propias de esta póliza (planillas, extensión, terminación)</span></td></tr>
+          <tr><td class="i">04</td><td>Información previa al perfeccionamiento del contrato</td></tr>
+          <tr><td class="i">05</td><td>Carta de bienvenida del INS</td></tr>
+          <tr><td class="i">06</td><td>Comprobante de pago</td></tr>
+          <tr><td class="i">07</td><td>Condiciones Generales 2025</td></tr>
+          <tr><td class="i">08</td><td>Norma Técnica 2025</td></tr>
+          <tr><td class="i">09</td><td>Manual de acceso a RT Virtual<span class="s">Para reportar un accidente</span></td></tr>
+        </table>
+        <div style="text-align:center;padding:30px 0 26px"><a class="m-btn" href="#">Escribirme por WhatsApp</a></div>
+      </div>
+      <div class="m-agent"><b>Juan Carlos Hernández Vargas</b><br>Agente de Seguros Exclusivo · Instituto Nacional de Seguros<br><span class="lic">Licencia SUGESE 08-1318 · Código 1101130</span><br>WhatsApp 8822 1348 · jhernandez@segurosdelins.com · segurosdelins.com</div>
+      <div class="m-sdi"><img src="file:///C:/Users/segur/SDI-BRAND-KIT/logos/02-sdi-logo-compacto.svg" alt="SDI">SDI Seguros Digitales INS — Todos los derechos reservados</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 4 · CORREO DE COTIZACIÓN ======================= -->
+<section class="view" id="v-correo-cotizacion">
+  <div class="mailbg">
+    <div class="mailhead"><b>Asunto:</b> Cotización · Seguro de Riesgos del Trabajo para su obra</div>
+    <div class="mail">
+      <div class="m-top"><img src="../../../logo-ins-blanco.png" alt="INS"></div>
+      <div class="filete"><i style="background:#0369A1"></i><i style="background:#0D9488"></i><i style="background:#EA580C"></i><i style="background:#C9A227"></i></div>
+      <div class="m-body">
+        <div class="m-k">RIESGOS DEL TRABAJO · CONSTRUCCIÓN</div>
+        <h1 class="m-h1">Su cotización, María Fernanda</h1>
+        <p class="m-p">Este es el seguro que pide la Municipalidad para dar el permiso de construcción. Protege a quienes trabajen en su obra.</p>
+        <div class="m-big">
+          <div class="l">Prima a pagar · pago único</div>
+          <div class="v">₡696.500</div>
+          <div class="s">Válida por 15 días</div>
+        </div>
+        <table class="m-tbl" style="margin-top:18px">
+          <tr><td>Valor de la obra</td><td class="n">₡50.000.000</td></tr>
+          <tr><td>Monto asegurado (35 % de la obra)</td><td class="n">₡17.500.000</td></tr>
+          <tr><td>Tarifa</td><td class="n">3,98 %</td></tr>
+          <tr class="tot"><td>Prima</td><td class="n">₡696.500</td></tr>
+        </table>
+
+        <h2 class="m-h2">Lo bueno de esta póliza</h2>
+        <div class="m-li"><span class="d"></span><div><b>No presenta planillas.</b> No tiene que reportar trabajadores ni planillas durante la obra.</div></div>
+        <div class="m-li"><span class="d"></span><div><b>Un solo pago</b> por todo el tiempo de la obra, sin cuotas.</div></div>
+        <div class="m-li"><span class="d"></span><div><b>Si la obra se alarga</b>, se extiende la póliza mientras el permiso siga vigente.</div></div>
+
+        <h2 class="m-h2">Para emitirla necesito</h2>
+        <table class="m-docs" style="width:100%;border-collapse:collapse">
+          <tr><td class="i">01</td><td>La solicitud adjunta, firmada<span class="s">Firma digital o a mano</span></td></tr>
+          <tr><td class="i">02</td><td>La boleta del CFIA o de la Municipalidad<span class="s">Con los datos de la obra</span></td></tr>
+          <tr><td class="i">03</td><td>El pago<span class="s">Depósito a las cuentas del INS o enlace de pago con tarjeta</span></td></tr>
+        </table>
+        <p class="m-p" style="font-size:13px;color:#6B7681;margin-top:12px">Al quedar emitida le envío la Constancia de Póliza Vigente, que es el documento para el trámite municipal.</p>
+        <div style="text-align:center;padding:26px 0 26px"><a class="m-btn" href="#">Quiero emitirla</a></div>
+      </div>
+      <div class="m-agent"><b>Juan Carlos Hernández Vargas</b><br>Agente de Seguros Exclusivo · Instituto Nacional de Seguros<br><span class="lic">Licencia SUGESE 08-1318 · Código 1101130</span><br>WhatsApp 8822 1348 · jhernandez@segurosdelins.com · segurosdelins.com</div>
+      <div class="m-sdi"><img src="file:///C:/Users/segur/SDI-BRAND-KIT/logos/02-sdi-logo-compacto.svg" alt="SDI">SDI Seguros Digitales INS — Todos los derechos reservados</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const tpl=document.getElementById('barra');
+  document.querySelectorAll('.slot-barra').forEach(s=>{const c=tpl.content.cloneNode(true);c.querySelector('.'+s.dataset.on).classList.add('on');s.appendChild(c)});
+  function show(){const v=(location.hash||'#cotizar').slice(1);
+    document.querySelectorAll('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));
+    document.querySelectorAll('.mk a').forEach(a=>a.classList.toggle('on',a.dataset.v===v));scrollTo(0,0)}
+  addEventListener('hashchange',show);show();
+</script>
+</body>
+</html>
