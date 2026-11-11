@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Consola RT Construcción</title>
+  <!-- Tipografía SDI v1.3: Google Sans Flex (texto y títulos) y Google Sans Code
+       (cifras, pólizas). Inter va SOLO para prestar el ₡, que Flex no trae. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,400..700&family=Google+Sans+Code:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://accounts.google.com/gsi/client" async></script>
+  <link rel="stylesheet" href="linea-clara.css">
+  <link rel="stylesheet" href="consola.css">
+</head>
+<body>
+  <!-- IDENTIDAD: la consola es la herramienta del agente → manda SDI, el INS no
+       entra (al revés de los correos, que son cara al cliente). Logo 02 compacto
+       del kit, inline y vectorizado. Barra en dos niveles (regla 3). -->
+  <header>
+    <div class="lc-topbar"><div class="lc-wrap">
+      <svg viewBox="0 0 184 90" role="img" aria-label="SDI Seguros Digitales INS">
+        <path d="M36.076 74.656Q28.04 74.656 23.038 72.483Q18.036 70.31 15.535 66.456Q13.034 62.602000000000004 12.624 57.763999999999996H19.02Q19.266 61.7 21.644 64.119Q24.022 66.538 27.917 67.686Q31.812 68.834 36.486000000000004 68.834Q43.374 68.834 47.392 66.415Q51.410000000000004 63.996 51.410000000000004 59.24Q51.410000000000004 56.370000000000005 49.401 54.607Q47.392 52.843999999999994 44.071 51.696Q40.75 50.548 36.814 49.605000000000004Q32.878 48.662 28.901 47.596000000000004Q24.924 46.53 21.603 44.89Q18.282 43.25 16.273 40.667Q14.264 38.083999999999996 14.264 34.065999999999995Q14.264 27.424 19.389000000000003 23.241999999999997Q24.514000000000003 19.059999999999995 34.682 19.059999999999995Q41.897999999999996 19.059999999999995 46.572 21.232999999999997Q51.246 23.406 53.583 26.932Q55.92 30.458 56.166000000000004 34.558H49.852000000000004Q49.36 30.458 45.751999999999995 27.628999999999998Q42.144 24.799999999999997 34.682 24.799999999999997Q30.09 24.799999999999997 27.22 25.701999999999998Q24.35 26.604 22.833000000000002 28.038999999999998Q21.316000000000003 29.473999999999997 20.783 31.031999999999996Q20.25 32.589999999999996 20.25 33.984Q20.25 36.69 22.259 38.370999999999995Q24.268 40.052 27.589 41.159Q30.91 42.266 34.928 43.168Q38.946 44.07 42.923 45.177Q46.9 46.284 50.221000000000004 47.965Q53.542 49.646 55.551 52.269999999999996Q57.56 54.894 57.56 58.994Q57.56 66.538 51.82 70.59700000000001Q46.08 74.656 36.076 74.656ZM64.572 74.0V19.716H87.45Q92.28800000000001 19.716 96.757 21.561Q101.226 23.406 104.752 26.932Q108.27799999999999 30.458 110.328 35.459999999999994Q112.378 40.461999999999996 112.378 46.858000000000004Q112.378 53.254 110.328 58.256Q108.27799999999999 63.257999999999996 104.752 66.78399999999999Q101.226 70.31 96.757 72.155Q92.28800000000001 74.0 87.45 74.0ZM70.722 68.178H87.20400000000001Q93.02600000000001 68.178 97.29 65.226Q101.554 62.274 103.891 57.436Q106.22800000000001 52.598 106.22800000000001 46.858000000000004Q106.22800000000001 41.036 103.891 36.198Q101.554 31.36 97.29 28.448999999999998Q93.02600000000001 25.537999999999997 87.20400000000001 25.537999999999997H70.722ZM119.71799999999999 74.0V19.716H125.868V74.0Z" fill="#0369A1"/>
+        <g transform="translate(143.87, 19.06)">
+          <rect x="0" y="0.0" width="30.0" height="6.15" rx="1.5" fill="#0369A1"/>
+          <rect x="0" y="16.48" width="30.0" height="6.15" rx="1.5" fill="#0D9488"/>
+          <rect x="0" y="32.96" width="30.0" height="6.15" rx="1.5" fill="#EA580C"/>
+          <rect x="0" y="49.45" width="30.0" height="6.15" rx="1.5" fill="#C9A227"/>
+        </g>
+      </svg>
+      <div class="meta" id="who">Uso interno</div>
+    </div></div>
+    <div class="lc-nav"><div class="lc-wrap">
+      <div class="l"><span class="prod">RT Construcción</span>
+        <div class="links" id="tabs" hidden>
+          <a href="#cotizar" data-t="cotizar">Cotizar</a><a href="#emitir" data-t="emitir">Emitir</a><a href="#historial" data-t="historial">Historial</a>
+        </div>
+      </div>
+      <a class="lc-pill lc-pill-out lc-pill-sm" href="/" target="_blank" rel="noopener">Página del cliente</a>
+    </div></div>
+  </header>
+
+  <!-- ENTRADA -->
+  <section id="gate" class="lc-hero">
+    <span class="lc-state">Solo agentes autorizados</span>
+    <h1>Consola RT Construcción</h1>
+    <p class="lead">Cotizá y mandá la emisión al cliente con tu cuenta de Google.</p>
+    <div class="cta"><button id="btn-login" class="lc-pill lc-pill-fill">Iniciar sesión con Google</button></div>
+    <p id="gate-err" class="err" hidden></p>
+  </section>
+
+  <!-- ===================== COTIZAR ===================== -->
+  <section class="view" id="v-cotizar" hidden>
+    <div class="lc-hero">
+      <span class="lc-state" id="cz-estado-tarifa">Tarifa 3,98 %</span>
+      <h1>Cotizar RT Construcción</h1>
+      <p class="lead">Escribí el valor de la obra y le llega al cliente una cotización clara, con los requisitos y lo que tiene que saber de la póliza.</p>
+    </div>
+    <div class="lc-band"><div class="lc-wrap">
+      <div class="lc-panel">
+        <div class="grid2" id="cz-form">
+          <div>
+            <div class="lc-k">Cliente</div>
+            <h2 class="sec">¿A quién le cotizamos?</h2>
+            <p class="sub">El correo sale desde tu cuenta de Gmail, con copia para vos.</p>
+            <div class="field"><label class="lc-label" for="cz-nombre">Nombre completo</label><input class="lc-input" id="cz-nombre" autocomplete="off"></div>
+            <div class="field"><label class="lc-label" for="cz-saludo">Saludo del correo (nombre de pila)</label><input class="lc-input" id="cz-saludo" autocomplete="off" placeholder="Se llena solo con el nombre"></div>
+            <div class="row2">
+              <div class="field"><label class="lc-label" for="cz-correo">Correo</label><input class="lc-input" id="cz-correo" type="email" autocomplete="off"></div>
+              <div class="field"><label class="lc-label" for="cz-tel">Teléfono / WhatsApp</label><input class="lc-input" id="cz-tel" autocomplete="off" inputmode="tel"></div>
+            </div>
+            <div class="field"><label class="lc-label" for="cz-obra">Valor de la obra (boleta CFIA o Municipalidad)</label><input class="lc-input lc-mono" id="cz-obra" inputmode="numeric" placeholder="₡ 0"></div>
+            <div class="field"><span class="lc-label">¿Quién es el tomador?</span>
+              <div class="seg"><button type="button" class="lc-pill lc-pill-ghost lc-pill-sm on" data-soc="0">Persona física</button><button type="button" class="lc-pill lc-pill-ghost lc-pill-sm" data-soc="1">Sociedad</button></div>
+              <span class="lc-fine">Si es sociedad, el correo pide además la personería jurídica.</span>
+            </div>
+          </div>
+          <div>
+            <div class="lc-k">Cálculo</div>
+            <h2 class="sec">Lo que ve el cliente</h2>
+            <p class="sub">Monto asegurado = 35 % del valor de la obra.</p>
+            <div class="big-wrap"><div class="lc-big-lbl">Prima a pagar (pago único)</div><div class="lc-big" id="cz-prima">₡0</div></div>
+            <div class="lc-rows calc">
+              <div class="lc-row"><span>Valor de la obra</span><span class="lc-amt" id="cz-r-obra">₡0</span></div>
+              <div class="lc-row"><span>Monto asegurado (35 %)</span><span class="lc-amt" id="cz-r-aseg">₡0</span></div>
+              <div class="lc-row"><span>Tarifa</span><span class="tarifa"><input class="lc-input lc-mono" id="cz-tarifa" inputmode="decimal"> %</span></div>
+              <div class="lc-row tot"><span>Prima</span><span class="lc-amt" id="cz-r-prima">₡0</span></div>
+            </div>
+            <p class="lc-fine">La tarifa depende de la actividad. Si el INS da otra, se cambia aquí y el cálculo se rehace.</p>
+            <p class="err" id="cz-err" hidden></p>
+            <div class="acts">
+              <button type="button" class="lc-pill lc-pill-out" id="cz-ver">Ver el correo</button>
+              <button type="button" class="lc-pill lc-pill-fill" id="cz-enviar">Enviar cotización</button>
+            </div>
+          </div>
+        </div>
+        <div class="hecho" id="cz-hecho" hidden></div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- ===================== EMITIR ===================== -->
+  <section class="view" id="v-emitir" hidden>
+    <div class="lc-hero">
+      <span class="lc-state" id="em-estado" hidden>Póliza leída · lista para enviar</span>
+      <h1>Enviar la emisión al cliente</h1>
+      <p class="lead">Arrastrá los PDF o el ZIP que te da el INS. La app lee la póliza, ordena los documentos y arma el correo de bienvenida.</p>
+    </div>
+    <div class="lc-band"><div class="lc-wrap">
+      <div class="lc-panel">
+        <div class="grid2" id="em-form">
+          <div>
+            <div class="lc-k">Documentos</div>
+            <h2 class="sec" id="em-cuenta">Documentos de la emisión</h2>
+            <p class="sub">Los 3 documentos generales van siempre; solo se suben los de esta póliza.</p>
+            <div class="drop" id="em-drop">
+              <div class="t">Soltá aquí los PDF, el ZIP o la carpeta</div>
+              <div class="s">Archivos sueltos, comprimidos o la carpeta entera · se reconocen por el nombre del archivo</div>
+              <div class="drop-btns">
+                <button type="button" class="lc-pill lc-pill-out lc-pill-sm" id="em-btn-arch">Elegir archivos</button>
+                <button type="button" class="lc-pill lc-pill-out lc-pill-sm" id="em-btn-carp">Elegir carpeta</button>
+              </div>
+              <input type="file" id="em-in-arch" multiple accept=".pdf,application/pdf,.zip,application/zip,application/x-zip-compressed" hidden>
+              <input type="file" id="em-in-carp" webkitdirectory multiple hidden>
+            </div>
+            <p class="lc-fine" id="em-progreso" hidden></p>
+            <div class="lc-rows doclist" id="em-docs"></div>
+          </div>
+          <div>
+            <div class="lc-k">Póliza</div>
+            <h2 class="sec">Lo que leyó la app</h2>
+            <p class="sub">Revisá antes de enviar; cualquier dato se puede corregir a mano.</p>
+            <div class="lc-block datos">
+              <div class="field"><label class="lc-label" for="em-tomador">Tomador</label><input class="lc-input" id="em-tomador"></div>
+              <div class="field"><label class="lc-label" for="em-saludo">Saludo del correo (nombre de pila)</label><input class="lc-input" id="em-saludo"></div>
+              <div class="field"><label class="lc-label" for="em-correo">Correo del cliente</label><input class="lc-input" id="em-correo" type="email"></div>
+              <div class="row2">
+                <div class="field"><label class="lc-label" for="em-poliza">Póliza</label><input class="lc-input lc-mono" id="em-poliza"></div>
+                <div class="field"><label class="lc-label" for="em-boleta">Boleta CFIA</label><input class="lc-input lc-mono" id="em-boleta"></div>
+              </div>
+              <div class="row2">
+                <div class="field"><label class="lc-label" for="em-desde">Vigencia desde</label><input class="lc-input lc-mono" id="em-desde" placeholder="dd/mm/aaaa"></div>
+                <div class="field"><label class="lc-label" for="em-hasta">Vigencia hasta</label><input class="lc-input lc-mono" id="em-hasta" placeholder="dd/mm/aaaa"></div>
+              </div>
+              <div class="field"><label class="lc-label" for="em-lugar">Lugar de la obra</label><input class="lc-input" id="em-lugar"></div>
+              <div class="row2">
+                <div class="field"><label class="lc-label" for="em-monto">Monto asegurado</label><input class="lc-input lc-mono" id="em-monto" inputmode="numeric"></div>
+                <div class="field"><label class="lc-label" for="em-prima">Prima pagada</label><input class="lc-input lc-mono" id="em-prima" inputmode="numeric"></div>
+              </div>
+              <p class="lc-fine" id="em-actividad"></p>
+            </div>
+            <p class="err" id="em-err" hidden></p>
+            <div class="acts">
+              <button type="button" class="lc-pill lc-pill-out" id="em-limpiar">Limpiar</button>
+              <button type="button" class="lc-pill lc-pill-out" id="em-ver">Ver el correo</button>
+              <button type="button" class="lc-pill lc-pill-fill" id="em-enviar">Enviar emisión</button>
+            </div>
+          </div>
+        </div>
+        <div class="hecho" id="em-hecho" hidden></div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- ===================== HISTORIAL ===================== -->
+  <section class="view" id="v-historial" hidden>
+    <div class="lc-hero"><h1>Historial</h1><p class="lead">Lo que se envió desde este navegador.</p></div>
+    <div class="lc-band"><div class="lc-wrap"><div class="lc-panel"><div id="hist"></div></div></div></div>
+  </section>
+
+  <!-- Vista previa del correo -->
+  <dialog id="prev"><div class="prev-bar"><b id="prev-asunto"></b><button type="button" class="lc-pill lc-pill-out lc-pill-sm" id="prev-cerrar">Cerrar</button></div><iframe id="prev-frame" title="Vista previa del correo"></iframe></dialog>
+
+  <!-- Registro de cambios (solo en la cara del agente) -->
+  <footer class="pie">
+    <details>
+      <summary>Última actualización: <b>11 nov 2026</b> — consola nueva: cotizar y emitir</summary>
+      <ul>
+        <li><b>11 nov 2026</b> — Primera versión de la consola. <b>Cotizar</b>: escribís el valor de la obra, la prima se calcula sola (35 % × tarifa, que se puede cambiar) y le mandás al cliente un correo con el desglose, lo bueno de la póliza y los requisitos. <b>Emitir</b>: arrastrás los PDF, el ZIP o la carpeta de la emisión; la app reconoce cada documento, lee los datos de las Condiciones Particulares y manda el correo de bienvenida con los adjuntos ordenados, la Constancia de Póliza Vigente marcada como el documento del trámite municipal y lo que el cliente debe saber (sin planillas, no se renueva, qué hacer en un accidente). Los 3 documentos generales van siempre solos.</li>
+      </ul>
+    </details>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="auth.js"></script>
+  <script src="zip.js"></script>
+  <script src="parse.js"></script>
+  <script src="email.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+/* ================================================================
+   SDI · LÍNEA CLARA · hoja reutilizable · v1.3 · 10 sep 2026
+   ----------------------------------------------------------------
+   Referencia visual: business.google.com/en-all/google-ads
+   Aprobada por JC en el portal EBI (9 sep) y Vital 360 (9-10 sep).
+   Los valores vienen TRANSCRITOS del bloque "LÍNEA CLARA" de
+   cotizador-vital-360/index.html y de ebi-polizas/css/portal.css.
+
+   CÓMO SE USA
+   1. En el <head>, DESPUÉS de la hoja de la app (gana por orden):
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,400..700&family=Google+Sans+Code:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/linea-clara.css">
+      Inter va SOLO para prestar el glifo ₡ (Google Sans Flex no lo
+      trae): el navegador baja únicamente el subset latin-ext de Inter
+      cuando aparece un ₡. No quitarla de la pila.
+   2. Solo la cara: mismos ids y enganches de JS. Lo que la app ya
+      pinta se re-estila por selector; NO se toca el HTML salvo para
+      la barra en dos niveles y el hero.
+   3. Prefijo lc-. Un solo acento en botones: azul SDI.
+   ================================================================ */
+
+:root{
+  /* --- acento y neutros ------------------------------------------ */
+  --lc-blue:#0369A1;          /* R7 · acento ÚNICO de botones */
+  --lc-blue-ink:#02557F;      /* hover / pressed */
+  --lc-blue-soft:#E8F1F8;     /* tinte de hover en botones de contorno */
+  --lc-band:#EEF4F9;          /* R1 · banda pálida, solo para agrupar */
+  --lc-line:#DADCE0;          /* R5 · hairline de tarjeta */
+  --lc-line-btn:#8A939C;      /* R7 · borde de control, 3.1:1 sobre blanco */
+  --lc-line-soft:#EDEFF2;     /* divisores internos */
+  --lc-ink:#1B1F23;
+  --lc-ink-2:#5A6570;
+  --lc-ink-3:#6B7681;         /* 4.6:1 sobre blanco: el gris más claro para texto */
+  --lc-ok-bg:#E9F5F0;         /* R4 · píldora de estado */
+  --lc-ok-tx:#037D61;
+  --lc-warn-tx:#B26A00;       /* solo en un punto de 6-8 px, nunca sobre cifras */
+  /* --- color distintivo del producto (R6): cada app lo redefine ---- */
+  --lc-prod:#0369A1;
+  --lc-prod-tint:#EDF3F4;     /* o color-mix(in srgb, var(--lc-prod) 11%, white) */
+  /* --- superficies --------------------------------------------- */
+  --lc-r-xl:32px;             /* R5 · panel sobre banda */
+  --lc-r-lg:24px;             /* bloques informativos */
+  --lc-r-md:20px;             /* R5 · tarjeta */
+  --lc-shadow:0 1px 2px rgba(27,31,35,.05);   /* la única sombra permitida */
+  --lc-ease:cubic-bezier(.22,.61,.36,1);      /* R9 · sin rebote */
+  /* --- tipografía v1.3 ------------------------------------------ */
+  --font-display:'Google Sans Flex','Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --font-body:'Google Sans Flex','Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --font-mono:'Google Sans Code',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  --font-big:var(--font-display);   /* la protagonista va en la de títulos; el ₡ lo presta Inter */
+  --lc-w-title:500;                 /* Google usa pesos medios en titulares, no negrita */
+}
+
+/* ---------- base ---------------------------------------------------- */
+html,body{background:#fff;color:var(--lc-ink)}
+body{font-family:var(--font-body);font-size:14.5px;line-height:1.5;font-optical-sizing:auto;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+h1,h2,h3,.lc-h{font-family:var(--font-display);font-weight:var(--lc-w-title);color:var(--lc-ink);letter-spacing:-.025em;line-height:1.18;margin:0}
+.lc-mono,.lc-num{font-family:var(--font-mono);font-variant-numeric:tabular-nums lining-nums}
+.lc-wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* ---------- R2/R7 · píldoras (44 px, contorno ≥3:1) ----------------- */
+.lc-pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 22px;
+  border-radius:999px;font-family:var(--font-body);font-size:14.5px;font-weight:600;letter-spacing:-.005em;cursor:pointer;
+  text-decoration:none;border:1px solid transparent;white-space:nowrap;
+  transition:background .15s ease,border-color .15s ease,color .15s ease}
+.lc-pill-fill{background:var(--lc-blue);color:#fff;border-color:var(--lc-blue)}
+.lc-pill-fill:hover{background:var(--lc-blue-ink);border-color:var(--lc-blue-ink)}
+.lc-pill-out{background:#fff;color:var(--lc-blue);border-color:var(--lc-blue)}
+.lc-pill-out:hover{background:var(--lc-blue-soft)}
+.lc-pill-ghost{background:#fff;color:var(--lc-ink-2);border-color:var(--lc-line-btn)}     /* chips de opción */
+.lc-pill-ghost:hover{border-color:var(--lc-blue);color:var(--lc-blue);background:var(--lc-blue-soft)}
+.lc-pill-ghost.on{background:var(--lc-blue);border-color:var(--lc-blue);color:#fff}
+.lc-pill-sm{min-height:38px;padding:0 18px;font-size:13.5px}
+.lc-pill:focus-visible{outline:3px solid rgba(3,105,161,.35);outline-offset:2px}
+.lc-pill[disabled]{opacity:.45;pointer-events:none}
+
+/* ---------- R4 · estado: píldora verde con punto, sin emoji ---------- */
+.lc-state{display:inline-flex;align-items:center;gap:8px;padding:7px 15px;border-radius:999px;background:var(--lc-ok-bg);
+  color:var(--lc-ok-tx);font-size:12.5px;font-weight:600;letter-spacing:.01em;border:none}
+.lc-state::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0}
+/* ---------- R6 · el color del producto: chip, regla 28×3, tinte ------ */
+.lc-chip{display:inline-flex;align-items:center;padding:4px 11px;border-radius:999px;background:var(--lc-prod-tint);
+  color:var(--lc-prod);font-size:11.5px;font-weight:600;letter-spacing:.01em}
+.lc-k{font-size:12px;letter-spacing:.02em;color:var(--lc-ink-3);font-weight:600}          /* kicker de sección */
+.lc-k::before{content:"";display:block;width:28px;height:3px;border-radius:2px;background:var(--lc-prod);margin-bottom:12px}
+.lc-h-sec{font-size:28px;margin-top:6px}
+.lc-fine{font-size:13px;color:var(--lc-ink-3);margin-top:10px;line-height:1.6}
+/* lo que mejora/empeora: el color va en el punto, nunca en la cifra */
+.lc-dot{color:var(--lc-ink-2)}
+.lc-dot::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--lc-warn-tx);margin-right:6px;vertical-align:.1em}
+.lc-dot.ok::before{background:var(--lc-ok-tx)}
+
+/* ---------- R3 · barra en dos niveles ------------------------------- */
+.lc-topbar{background:#F8F9FA;height:52px}
+.lc-topbar .lc-wrap{display:flex;align-items:center;justify-content:space-between;height:100%;gap:16px}
+.lc-topbar img,.lc-topbar svg{height:30px;width:auto;display:block}          /* logo SDI a color (02-compacto) */
+.lc-topbar .meta{font-size:12.5px;color:var(--lc-ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lc-topbar .meta strong{color:var(--lc-ink);font-weight:600}
+.lc-topbar .meta .lic{font-family:var(--font-mono);font-size:11.5px;color:var(--lc-ink-3);margin-left:10px}
+.lc-nav{border-bottom:1px solid var(--lc-line-soft);height:64px;background:#fff}
+.lc-nav .lc-wrap{display:flex;align-items:center;justify-content:space-between;height:100%;gap:16px}
+.lc-nav .l{display:flex;align-items:center;gap:26px;min-width:0}
+.lc-nav .prod{font-family:var(--font-display);font-size:19px;font-weight:600;letter-spacing:-.025em;white-space:nowrap}
+.lc-nav .links{display:flex;gap:22px;font-size:13.5px;color:var(--lc-ink-2);font-weight:500;overflow-x:auto;scrollbar-width:none}
+.lc-nav .links::-webkit-scrollbar{display:none}
+.lc-nav .links a{padding:6px 0;border-bottom:2px solid transparent;white-space:nowrap;color:inherit;text-decoration:none}
+.lc-nav .links a:hover,.lc-nav .links a.on{color:var(--lc-blue);border-bottom-color:var(--lc-blue)}
+
+/* ---------- R2 · titular grande y centrado ------------------------- */
+.lc-hero{text-align:center;padding:56px 28px 52px;max-width:840px;margin:0 auto}
+.lc-hero .lc-state{margin-bottom:22px}
+.lc-hero h1{font-size:clamp(36px,4.2vw,50px);letter-spacing:-.025em;line-height:1.06;text-wrap:balance}
+.lc-hero .lead{font-size:17px;color:var(--lc-ink-2);margin:16px auto 0;max-width:56ch;line-height:1.6;text-wrap:balance}
+.lc-hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+
+/* ---------- R1/R5 · banda pálida + panel r32 + tarjetas r20 --------- */
+.lc-band{background:var(--lc-band);padding:44px 0 56px}
+.lc-panel{background:#fff;border:1px solid var(--lc-line);border-radius:var(--lc-r-xl);padding:38px 40px 34px;box-shadow:var(--lc-shadow)}
+.lc-card{background:#fff;border:1px solid var(--lc-line);border-radius:var(--lc-r-md);padding:18px 18px 16px;
+  transition:background .2s var(--lc-ease),border-color .2s var(--lc-ease)}
+.lc-card:hover{background:var(--lc-prod-tint);border-color:var(--lc-prod)}     /* R6 · el tinte del producto, solo al pasar el mouse */
+.lc-card .nm{font-family:var(--font-display);font-size:17px;font-weight:600;letter-spacing:-.02em;color:var(--lc-ink)}
+.lc-card .sm{font-size:12.5px;color:var(--lc-ink-3);margin-top:4px}
+.lc-block{background:#fff;border:1px solid var(--lc-line);border-radius:var(--lc-r-lg);padding:30px 34px;margin-bottom:22px;box-shadow:none}
+.lc-note{background:var(--lc-band);border:0;border-radius:var(--lc-r-md);padding:16px 18px;font-size:13.5px;color:var(--lc-ink-2);line-height:1.6}
+.lc-note b{color:var(--lc-ink);font-weight:600}
+.lc-note .t{font-size:11.5px;letter-spacing:.02em;color:var(--lc-ink-3);font-weight:600}
+
+/* ---------- R8 · cifras: protagonista grande, secundarias en mono ---- */
+.lc-big{font-family:var(--font-big);font-size:clamp(36px,4.5vw,50px);font-weight:500;letter-spacing:-.02em;color:var(--lc-ink);
+  font-variant-numeric:tabular-nums lining-nums;line-height:1.1}
+.lc-big-lbl{font-size:12.5px;color:var(--lc-ink-3);font-weight:500}
+.lc-amt{font-family:var(--font-mono);font-size:17px;font-weight:600;letter-spacing:-.02em;color:var(--lc-ink);font-variant-numeric:tabular-nums lining-nums}
+.lc-amt-sm{font-family:var(--font-mono);font-size:11.5px;color:var(--lc-ink-3);font-variant-numeric:tabular-nums lining-nums}
+/* lista de renglones (recibo) */
+.lc-rows{border:1px solid var(--lc-line);border-radius:var(--lc-r-md);background:#fff}
+.lc-row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 18px;border-bottom:1px solid var(--lc-line-soft)}
+.lc-row:last-child{border-bottom:0}
+.lc-row.tot{background:var(--lc-band);font-weight:700}
+
+/* ---------- tablas ------------------------------------------------- */
+.lc-table-wrap{border:1px solid var(--lc-line);border-radius:var(--lc-r-md);overflow-x:auto}   /* la tabla se desplaza, no se recorta */
+.lc-table{width:100%;border-collapse:collapse;font-size:13px}
+.lc-table thead th{font-family:var(--font-body);font-size:11.5px;font-weight:600;letter-spacing:.01em;color:var(--lc-ink-3);
+  background:#fff;border-bottom:1px solid var(--lc-line);padding:14px;text-align:left}
+.lc-table tbody td{padding:11px 14px;border-bottom:1px solid var(--lc-line-soft);color:var(--lc-ink)}
+.lc-table tbody td.num{font-family:var(--font-mono);font-size:12.5px;font-variant-numeric:tabular-nums}
+.lc-table tbody tr:last-child td{border-bottom:0}
+.lc-table td.rec,.lc-table th.rec{background:var(--lc-band)}
+
+/* ---------- formularios (consola del agente) ------------------------ */
+.lc-input,.lc-select{border:1px solid var(--lc-line-btn);border-radius:10px;padding:10px 12px;font-size:13.5px;font-family:var(--font-body);
+  background:#fff;color:var(--lc-ink)}
+.lc-input:focus,.lc-select:focus{outline:none;border-color:var(--lc-blue);box-shadow:0 0 0 3px var(--lc-blue-soft)}
+.lc-label{font-size:12px;letter-spacing:.01em;color:var(--lc-ink-3);font-weight:600}
+.lc-tabs{display:flex;gap:4px;border-bottom:1px solid var(--lc-line);align-items:center}
+.lc-tab{padding:15px 16px;font-size:14px;font-weight:500;color:var(--lc-ink-2);border:0;background:none;border-bottom:2px solid transparent;cursor:pointer}
+.lc-tab:hover{color:var(--lc-blue)}
+.lc-tab.active{color:var(--lc-blue);border-bottom-color:var(--lc-blue);font-weight:600}
+
+/* ---------- pie ----------------------------------------------------- */
+.lc-foot{background:var(--lc-band);border-radius:var(--lc-r-xl);padding:32px 30px;text-align:center;color:var(--lc-ink-2)}
+.lc-foot img,.lc-foot svg{height:34px;width:auto;display:block;margin:0 auto 14px}
+.lc-foot .l1{font-size:12.5px}
+.lc-foot .l1 strong{color:var(--lc-ink)}
+.lc-foot .l2{font-size:11.5px;color:var(--lc-ink-3);margin-top:4px}
+
+/* ---------- R9 · movimiento: entrada suave, sin rebote ---------------- */
+@keyframes lcIn{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.lc-in{animation:lcIn .5s var(--lc-ease) both}
+.lc-in-2{animation-delay:.08s}
+.lc-in-3{animation-delay:.16s}
+@media (prefers-reduced-motion:reduce){
+  .lc-in,.lc-in-2,.lc-in-3{animation:none!important}
+  .lc-pill,.lc-card,.lc-nav .links a{transition:none}
+}
+
+/* ---------- [hidden] siempre gana (display:flex/grid lo pisan) -------- */
+.lc-pill[hidden],.lc-state[hidden],.lc-chip[hidden],.lc-card[hidden],.lc-row[hidden]{display:none!important}
+
+/* ---------- responsive ---------------------------------------------- */
+@media (max-width:900px){
+  .lc-nav .links{gap:16px;font-size:13px}
+  .lc-panel{padding:30px 22px 26px}
+}
+@media (max-width:640px){
+  .lc-wrap{padding:0 20px}
+  .lc-topbar .meta{display:none}
+  .lc-hero{padding:44px 20px 36px}
+  .lc-hero .lead{font-size:16px}
+  .lc-panel{padding:26px 18px 22px;border-radius:24px}
+  .lc-block{padding:22px 18px}
+}
+@media print{
+  .lc-in,.lc-in-2,.lc-in-3{animation:none}
+  .lc-card,.lc-panel,.lc-block{break-inside:avoid;box-shadow:none}
+}

@@ -4,6 +4,15 @@
 
 **12 oct 2026:** marca «SDI Seguros Digitales INS» — el pie de `index.html` y `cotizador-construccion.html` cambia el logo armado a mano (spans + barras CSS + «SEGUROS DIGITALES») por el SVG del kit v1.4 (04 negativo, en línea, 68 px de alto); el correo al cliente (`Code.gs`, lo implementa JC) sigue con SDI + barras en tabla pero dice «SEGUROS DIGITALES INS» y «SDI Seguros Digitales INS — Todos los derechos reservados».
 
+**11 nov 2026: consola del agente `/agente/`** (mismo sitio, segunda cara, como Asistencia Viajero). Mockup aprobado por JC: `docs/mockups/2026-11-11-consola-agente/`.
+- Login Google (GIS) + whitelist + envío por Gmail API con la cuenta del agente, Cc al agente. `auth.js` y `zip.js` TRANSCRITOS de `APP-ASISTENCIA-INS-VIAJERO/agente/`; mismo Client ID (`config.js`). 🔴 Pre-requisito: origen `https://rtconstruccion.appsegurosdigitales.com` en "Authorized JavaScript origins" del Client ID.
+- **Cotizar:** valor de obra × 35 % × tarifa (3,98 % por defecto, editable). Correo con desglose, "lo bueno" (sin planillas, pago único, extensión), requisitos (solicitud y cuentas: mismos enlaces de Drive que Code.gs; personería si es sociedad) y botón WhatsApp.
+- **Emitir:** recibe PDF, ZIP o carpeta. `parse.js` clasifica por nombre de archivo (constancia, particulares, especiales, perfeccionamiento, bienvenida, comprobante, generales, norma, manual) y lee los datos de las **Condiciones Particulares** (póliza, vigencia, tomador APELLIDO APELLIDO NOMBRE → saludo, correo, distrito/cantón/provincia, actividad, monto, tarifa, prima, boleta CFIA). Probado con el texto real de la póliza 0410520.
+- Correo de emisión: la **Constancia de Póliza Vigente = documento del trámite municipal** (recuadro durazno + fila 01 con fondo, pedido de JC); lo que debe saber con cita a las Condiciones Especiales (2.b sin planillas, 5 no se renueva, 2.a el dueño no está cubierto, 3 y 9 prima devengada); accidente: 8 días hábiles por RT Virtual; 800-TeleINS y KAL.
+- Los 3 **generales fijos** van en `agente/docs/` (`condiciones-generales-2025.pdf`, `norma-tecnica-2025.pdf`, `manual-rt-virtual.pdf`); si faltan, el envío se bloquea (el correo dice que el manual va adjunto). Si el agente los arrastra con la emisión se usan esos y no se duplican.
+- Envío por el endpoint de SUBIDA de Gmail (`upload/...?uploadType=media`, message/rfc822, hasta 35 MB): los 9 PDF pasan los ~5 MB del envío JSON.
+- Prueba local sin login: `http://localhost:5173/agente/?demo=1` (envío apagado). Historial en localStorage del navegador.
+
 ---
 
 ## Qué es este proyecto
