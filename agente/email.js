@@ -149,7 +149,7 @@ window.REmail = (function () {
       '<span style="display:inline-block;background:' + OK_BG + ';color:' + OK_TX + ';font-size:12.5px;font-weight:bold;padding:6px 14px;border-radius:999px;margin-bottom:16px;">&#9679; P&oacute;liza activa</span>' +
       kicker('RIESGOS DEL TRABAJO &middot; CONSTRUCCI&Oacute;N') +
       '<p style="margin:8px 0 12px;font-size:26px;line-height:1.2;color:' + INK + ';">Su obra ya est&aacute; asegurada' + (e.saludo ? ', ' + esc(e.saludo) : '') + '</p>' +
-      '<p style="margin:0 0 14px;font-size:15px;line-height:1.6;color:' + INK2 + ';">Le adjunto los documentos de su p&oacute;liza. Abajo le resumo lo m&aacute;s importante para que no tenga que leerlos todos.</p>' +
+      '<p style="margin:0 0 14px;font-size:15px;line-height:1.6;color:' + INK2 + ';">Le adjunto los documentos de su p&oacute;liza. Le recomiendo leerlos con calma; abajo le detallo lo m&aacute;s importante de su p&oacute;liza.</p>' +
       tablaDatos(filas) +
       kicker('PARA EL PERMISO DE CONSTRUCCI&Oacute;N') + iso +
       h2('Lo que debe saber de su p&oacute;liza') +
